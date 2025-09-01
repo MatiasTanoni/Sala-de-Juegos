@@ -1,1 +1,29 @@
-<p>navbar works!</p>
+<nav class="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-lg">
+  <div class="flex items-center space-x-3">
+    <img src="icono.png" alt="logo" class="w-12 h-12">
+    <span class="text-xl font-bold">Sala de Juegos</span>
+  </div>
+
+  <ul class="flex space-x-6 text-lg">
+    <li>
+      <a routerLink="/login"class=" transition">
+        Login
+      </a>
+    </li>
+    <li>
+      <a routerLink="/registro" class=" transition">
+        Registro
+      </a>
+    </li>
+    <li>
+      <a routerLink="/bienvenida"  class=" transition">
+        Bienvenida
+      </a>
+    </li>
+    <li>
+      <a routerLink="/quien-soy"  class=" transition">
+        Quién Soy
+      </a>
+    </li>
+  </ul>
+</nav>
