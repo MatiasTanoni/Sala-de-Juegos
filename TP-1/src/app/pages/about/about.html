@@ -1,19 +1,19 @@
 <div class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
   <div>
     @if (userData$ | async; as userData) {
-      <div class="flex items-center space-x-6 mb-4">
-        <img [src]="userData.avatar_url" alt="Avatar" class="w-24 h-24 rounded-full">
-        <div>
-          <h2 class="text-2xl font-bold">{{ userData.name || "Sin nombre"}} </h2>
-          <p class="text-gray-600">@{{ userData.login }}</p>
-        </div>
+    <div class="flex items-center space-x-6 mb-4">
+      <img [src]="userData.avatar_url" alt="Avatar" class="w-24 h-24 rounded-full">
+      <div>
+        <h2 class="text-2xl font-bold">{{ userData.name || "Sin nombre"}} </h2>
+        <p class="text-gray-600">@{{ userData.login }}</p>
       </div>
-      <p class="mb-2"><strong>Seguidores:</strong> {{ userData.followers || '0' }}</p>
-      <p class="mb-2"><strong>Seguidos:</strong> {{ userData.following || '0' }}</p>
-      <p class="mb-2"><strong>Repositorios:</strong> {{ userData.public_repos }}</p>
-      <a [href]="userData.html_url" target="_blank" class="text-blue-500 hover:underline">Ver en GitHub</a>
+    </div>
+    <p class="mb-2"><strong>Seguidores:</strong> {{ userData.followers || '0' }}</p>
+    <p class="mb-2"><strong>Seguidos:</strong> {{ userData.following || '0' }}</p>
+    <p class="mb-2"><strong>Repositorios:</strong> {{ userData.public_repos }}</p>
+    <a [href]="userData.html_url" target="_blank" class="text-blue-500 hover:underline">Ver en GitHub</a>
     } @else {
-      <p>Cargando datos...</p>
+    <app-spinner></app-spinner>
     }
   </div>
 </div>
