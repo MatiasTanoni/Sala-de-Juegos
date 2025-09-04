@@ -20,4 +20,3 @@ export class About implements OnInit {
     this.userData$ = this.githubService.getUser(this.username);
   }
 }
-
