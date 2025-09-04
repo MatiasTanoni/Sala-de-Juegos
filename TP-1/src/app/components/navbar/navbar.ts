@@ -8,5 +8,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrls: ['./navbar.css']
 })
 export class Navbar {
-
+  isOpen = false;
 }
