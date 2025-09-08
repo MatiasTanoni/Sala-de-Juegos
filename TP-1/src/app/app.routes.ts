@@ -4,20 +4,16 @@ export const routes: Routes =
 [
     { 
         path: '', 
-        redirectTo: '/login', 
+        redirectTo: '/auth', 
         pathMatch: 'full' 
     },
     { 
-        path: 'login', 
-        loadComponent: () => import('./pages/login/login').then(m => m.Login) 
+        path: 'auth', 
+        loadComponent: () => import('./pages/auth/auth').then(m => m.Auth) 
     },
     {
         path: 'home',
         loadComponent: () => import('./pages/home/home').then(m => m.Home)
-    },
-    { 
-        path: 'registro', 
-        loadComponent: () => import('./pages/registro/registro').then(m => m.Registro) 
     },
     { 
         path: 'about', 
@@ -25,6 +21,6 @@ export const routes: Routes =
     },
     {
         path: "**",
-        loadComponent: () => import('./pages/login/login').then(m => m.Login)
+        loadComponent: () => import('./pages/auth/auth').then(m => m.Auth)
     }
 ];

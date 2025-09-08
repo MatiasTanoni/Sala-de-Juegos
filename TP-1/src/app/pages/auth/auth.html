@@ -1,0 +1,27 @@
+<div class="page-wrapper flex flex-col items-center justify-center min-h-screen px-4">
+
+    <div class="segment-wrapper w-full max-w-md">
+        <div class="">
+            <button [class.bg-red-600]="show === 'login'" [class.text-white]="show === 'login'"
+                class=""
+                (click)="show = 'login'">
+                Login
+            </button>
+            <button [class.bg-red-600]="show === 'register'" [class.text-white]="show === 'register'"
+                class=""
+                (click)="show = 'register'">
+                Registro
+            </button>
+        </div>
+    </div>
+
+    <div class="w-full max-w-md p-2">
+        @if (show === 'login') {
+        <app-login></app-login>
+        }
+        @if (show === 'register') {
+        <app-register></app-register>
+        }
+    </div>
+
+</div>
