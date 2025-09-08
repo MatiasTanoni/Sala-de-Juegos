@@ -1,4 +1,4 @@
-<nav class="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-lg">
+<nav class="bg-gray-900 text-white px-6 py-4 flex items-center justify-between shadow-lg border border-gray-800">
   <div class="flex items-center space-x-3">
     <img src="icono.png" alt="logo" class="w-12 h-12">
     <span class="text-xl font-bold">Sala de Juegos</span>
@@ -17,10 +17,8 @@
   </button>
 
   <ul class="hidden md:flex space-x-6 text-lg">
-    <li><a routerLink="/login" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Login</a>
+    <li><a routerLink="/auth" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Iniciar Sesión/Registrarse</a>
     </li>
-    <li><a routerLink="/registro" routerLinkActive="border-b-2 border-white font-semibold"
-        class="transition">Registro</a></li>
     <li><a routerLink="/home" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Bienvenida</a>
     </li>
     <li><a routerLink="/about" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Quien Soy</a>
@@ -30,9 +28,7 @@
 
 @if (isOpen) {
 <ul class="md:hidden flex flex-col space-y-4 bg-gray-900 text-lg px-6 py-4 text-white">
-  <li><a routerLink="/login" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Login</a></li>
-  <li><a routerLink="/registro" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Registro</a>
-  </li>
+  <li><a routerLink="/auth" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Iniciar Sesión/Registrarse</a></li>
   <li><a routerLink="/home" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Bienvenida</a>
   </li>
   <li><a routerLink="/about" routerLinkActive="border-b-2 border-white font-semibold" class="transition">Quien Soy</a>
