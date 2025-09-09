@@ -16,6 +16,22 @@ export class Auth {
     this.supabase = this.db.client
   }
 
+  async login(email: string, password: string): Promise<{ success: boolean; message: string }> {
+    console.log("email: " + email + ", password: " + password);
+    const { data, error } = await this.supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      console.log("ERROR CONSOLA: " + error);
+      return { success: false, message: 'Credenciales inválidas.' };
+    }
+
+    this.router.navigate(['/home'], { replaceUrl: true });
+    return { success: true, message: 'Inicio de sesión exitoso.' };
+  }
+
   async register(email: string, password: string, name: string, lastName: string, age: number): Promise<{ success: boolean; message: string }> {
     try {
       const { data, error } = await this.supabase.auth.signUp({

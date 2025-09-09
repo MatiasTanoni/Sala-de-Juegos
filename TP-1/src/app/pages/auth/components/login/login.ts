@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { Auth } from '../../../services/auth';
+import { Auth } from '../../../../services/auth/auth';
 import {
   FormsModule,
   FormControl,
@@ -17,15 +17,15 @@ import {
   styleUrl: './login.css'
 })
 export class Login {
-  formulario!: FormGroup;
-  password: string='';
-  email:string='';
+  formularioLogin!: FormGroup;
+  password: string = '';
+  email: string = '';
 
-  // constructor(private auth: Auth) {
-  // }
+  constructor(private auth: Auth) {
+  }
 
   ngOnInit() {
-    this.formulario = new FormGroup({
+    this.formularioLogin = new FormGroup({
       email: new FormControl(this.email, [
         Validators.required,
         Validators.email,
@@ -38,10 +38,20 @@ export class Login {
   }
 
   async onLogin() {
-    // const { success, message } = await this.auth.login(this.email, this.password)
-    const { email, password } = this.formulario.value;
+    const { email, password } = this.formularioLogin.value;
 
-    console.log("Valores del formulario LOGIN:", this.formulario.value);
+    try {
+      const { success, message } = await this.auth.login(email, password);
 
+      console.log("Valores del formulario LOGIN:", this.formularioLogin.value);
+
+      if (success) {
+        console.log("Login exitoso:", message);
+      } else {
+        console.error("Error en login:", message);
+      }
+    } catch (error) {
+      console.error("Excepción en login:", error);
+    }
   }
 }
