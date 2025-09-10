@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Auth } from '../../services/auth/auth';
+import { effect } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -10,19 +11,24 @@ import { Auth } from '../../services/auth/auth';
 })
 export class Navbar {
   isOpen = false;
-  isLoggedIn = false;
+  user: any = null;
   userData: any = null;
 
-  constructor(private auth: Auth) { }
-
-  ngOnInit() {
-    const user = this.auth.user();
-    if (user && typeof user !== 'boolean') {
-      this.userData = user.email;
-    }
+  constructor(private auth: Auth) {
+    effect(() => {
+      const u = this.auth.user();
+      if (u && typeof u !== 'boolean') {
+        this.user = u;
+        this.userData = u.name;
+      } else {
+        this.user = null;
+        this.userData = null;
+      }
+    });
   }
 
   onLogout() {
+    console.log("Logout clicked");
     this.auth.logout();
   }
 }
