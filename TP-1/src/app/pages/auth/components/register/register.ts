@@ -27,6 +27,7 @@ export class Register implements OnInit {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  registerError: string | null = null;
 
   ngOnInit() {
     this.formulario = new FormGroup({
@@ -62,7 +63,7 @@ export class Register implements OnInit {
       return;
     }
 
-    const { name, lastName,age, email, password } = this.formulario.value;
+    const { name, lastName, age, email, password } = this.formulario.value;
 
     console.log("Valores del formulario:", this.formulario.value);
 
@@ -78,9 +79,11 @@ export class Register implements OnInit {
         console.log('Registro exitoso:', message);
       } else {
         console.error('Error en el registro:', message);
+        this.registerError = message;
       }
     } catch (error) {
       console.error('Error en el registro:', error);
+      this.registerError = "Ocurrió un error inesperado durante el registro.";
     }
   }
 }

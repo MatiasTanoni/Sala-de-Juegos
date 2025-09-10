@@ -31,4 +31,19 @@
       transition-all duration-200 transform hover:scale-[1.03] hover:shadow-red-500/40">
         Ingresar
     </button>
+    @if (loginError) {
+    <div class="mt-4 text-center text-red-500 font-medium">
+        {{ loginError }}
+    </div>
+    }
+
+    <div class="mt-6 space-y-3">
+        @for (user of quickUsers; track user.email) {
+        <button (click)="onQuickLogin(user)"
+            class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-xl shadow transition">
+            Ingresar como {{ user.label }}
+        </button>
+        }
+    </div>
+    
 </form>

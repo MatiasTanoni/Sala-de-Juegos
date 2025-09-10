@@ -20,6 +20,13 @@ export class Login {
   formularioLogin!: FormGroup;
   password: string = '';
   email: string = '';
+  loginError: string | null = null;
+
+  quickUsers = [
+    { email: 'admin@test.com', password: '123456', label: 'Admin' },
+    { email: 'user@test.com', password: '123456', label: 'Usuario' },
+    { email: 'guest@test.com', password: '123456', label: 'Invitado' },
+  ];
 
   constructor(private auth: Auth) {
   }
@@ -39,18 +46,25 @@ export class Login {
 
   async onLogin() {
     const { email, password } = this.formularioLogin.value;
+    await this.doLogin(email, password);
+  }
 
+  async onQuickLogin(user: { email: string; password: string }) {
+    await this.doLogin(user.email, user.password);
+  }
+
+  private async doLogin(email: string, password: string) {
     try {
       const { success, message } = await this.auth.login(email, password);
 
-      console.log("Valores del formulario LOGIN:", this.formularioLogin.value);
-
       if (success) {
+        this.loginError = null;
         console.log("Login exitoso:", message);
       } else {
-        console.error("Error en login:", message);
+        this.loginError = message;
       }
     } catch (error) {
+      this.loginError = "Ocurrió un error inesperado al iniciar sesión.";
       console.error("Excepción en login:", error);
     }
   }
