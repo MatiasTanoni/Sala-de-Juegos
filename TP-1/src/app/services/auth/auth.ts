@@ -16,6 +16,22 @@ export class Auth {
     this.supabase = this.db.client
   }
 
+  async logout(): Promise<{ success: boolean; message: string }> {
+    try {
+      const { error } = await this.supabase.auth.signOut();
+
+      if (error) {
+        return { success: false, message: error.message };
+      }
+
+      this.router.navigate(['/auth'], { replaceUrl: true });
+
+      return { success: true, message: 'Sesión cerrada correctamente.' };
+    } catch (error) {
+      return { success: false, message: 'Error al cerrar la sesión.' };
+    }
+  }
+
   async login(email: string, password: string): Promise<{ success: boolean; message: string }> {
     console.log("email: " + email + ", password: " + password);
     const { data, error } = await this.supabase.auth.signInWithPassword({
@@ -27,6 +43,8 @@ export class Auth {
       console.log("ERROR CONSOLA: " + error);
       return { success: false, message: 'Credenciales inválidas.' };
     }
+
+    this.user.set(data.user ?? false);
 
     this.router.navigate(['/home'], { replaceUrl: true });
     return { success: true, message: 'Inicio de sesión exitoso.' };
