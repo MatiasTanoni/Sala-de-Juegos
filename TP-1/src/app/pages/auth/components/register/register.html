@@ -1,11 +1,11 @@
 <form [formGroup]="formulario" (ngSubmit)="onRegister()"
-    class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-sm text-gray-100">
+    class="bg-gray-900 border border-gray-800 rounded-2xl p-8 shadow-2xl w-full max-w-sm text-gray-100 ">
 
     <div class="flex justify-center mb-3">
         <img src="icono.png" alt="Icono" class="h-24 w-24" />
     </div>
 
-    <h1 class="text-3xl font-extrabold text-center mb-3 tracking-wide text-red-500">
+    <h1 class="text-3xl font-extrabold text-center mb-3 tracking-wide text-red-700">
         Registro
     </h1>
 
@@ -13,7 +13,7 @@
         <label for="email" class="block text-sm font-medium mb-1 text-gray-400">Correo electrónico</label>
         <input id="email" type="email" formControlName="email" placeholder="ejemplo@correo.com" class="w-full px-4 py-3 rounded-xl border border-gray-700 bg-gray-800 text-gray-100
         placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition" />
-        <div class="h-2 text-red-500 text-sm mt-1">
+        <div class="h-2 text-red-700 text-sm mt-1">
             @if (formulario.get('email')?.invalid && formulario.get('email')?.touched) {
             Ingresa un correo válido.
             }
@@ -24,7 +24,7 @@
         <label for="name" class="block text-sm font-medium mb-1 text-gray-400">Nombre</label>
         <input id="name" type="text" formControlName="name" placeholder="Tu nombre" class="w-full px-4 py-3 rounded-xl border border-gray-700 bg-gray-800 text-gray-100
         placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition" />
-        <div class="h-2 text-red-500 text-sm mt-1">
+        <div class="h-2 text-red-700 text-sm mt-1">
             @if (formulario.get('name')?.invalid && formulario.get('name')?.touched) {
             El nombre es obligatorio.
             }
@@ -35,7 +35,7 @@
         <label for="lastName" class="block text-sm font-medium mb-1 text-gray-400">Apellido</label>
         <input id="lastName" type="text" formControlName="lastName" placeholder="Tu apellido" class="w-full px-4 py-3 rounded-xl border border-gray-700 bg-gray-800 text-gray-100
         placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition" />
-        <div class="h-2 text-red-500 text-sm mt-1">
+        <div class="h-2 text-red-700 text-sm mt-1">
             @if (formulario.get('lastName')?.invalid && formulario.get('lastName')?.touched) {
             El apellido es obligatorio.
             }
@@ -46,7 +46,7 @@
         <label for="age" class="block text-sm font-medium mb-1 text-gray-400">Edad</label>
         <input id="age" type="number" min="1" formControlName="age" placeholder="Tu edad" class="w-full px-4 py-3 rounded-xl border border-gray-700 bg-gray-800 text-gray-100
         placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition" />
-        <div class="h-2 text-red-500 text-sm mt-1">
+        <div class="h-2 text-red-700 text-sm mt-1">
             @if (formulario.get('age')?.invalid && formulario.get('age')?.touched) {
             Ingresa una edad válida.
             }
@@ -57,19 +57,19 @@
         <label for="password" class="block text-sm font-medium mb-1 text-gray-400">Contraseña</label>
         <input id="password" type="password" formControlName="password" placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-gray-700 bg-gray-800 text-gray-100
         placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition" />
-        <div class="h-2 text-red-500 text-sm mt-1">
+        <div class="h-2 text-red-700 text-sm mt-1">
             @if (formulario.get('password')?.invalid && formulario.get('password')?.touched) {
             Al menos 6 caracteres.
             }
         </div>
     </div>
 
-    <button type="submit" [disabled]="formulario.invalid" class="w-full bg-red-600 hover:bg-red-500 text-white font-semibold py-3 px-4 rounded-xl shadow-lg 
-      transition-all duration-200 transform hover:scale-[1.03] hover:shadow-red-500/40">
+    <button type="submit" [disabled]="formulario.invalid" class="w-full bg-red-700 hover:bg-red-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg 
+      transition-all duration-200 transform hover:scale-[1.03] hover:shadow-red-700/40">
         Registrarse
     </button>
     @if (registerError) {
-    <div class="mt-4 text-center text-red-500 font-medium">
+    <div class="mt-4 text-center text-red-700 font-medium">
         {{ registerError }}
     </div>
     }
