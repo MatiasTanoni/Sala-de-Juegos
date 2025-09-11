@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {
   FormsModule,
   FormControl,
@@ -19,7 +19,7 @@ import { Auth } from '../../../../services/auth/auth';
 export class Register implements OnInit {
   formulario!: FormGroup;
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private cdr: ChangeDetectorRef) { }
 
   age!: number;
   name: string = '';
@@ -79,11 +79,18 @@ export class Register implements OnInit {
         console.log('Registro exitoso:', message);
       } else {
         console.error('Error en el registro:', message);
-        this.registerError = message;
+        if (message === 'User already registered') {
+          this.registerError = "El usuario ya está registrado.";
+        }
+        else {
+          this.registerError = message;
+        }
       }
+      this.cdr.detectChanges();
     } catch (error) {
       console.error('Error en el registro:', error);
       this.registerError = "Ocurrió un error inesperado durante el registro.";
+      this.cdr.detectChanges();
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Auth } from '../../../../services/auth/auth';
 import {
   FormsModule,
@@ -28,7 +28,7 @@ export class Login {
     { email: 'guest@test.com', password: '123456', label: 'Invitado' },
   ];
 
-  constructor(private auth: Auth) {
+  constructor(private auth: Auth, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -63,9 +63,12 @@ export class Login {
       } else {
         this.loginError = message;
       }
+      this.cdr.detectChanges();
+
     } catch (error) {
       this.loginError = "Ocurrió un error inesperado al iniciar sesión.";
       console.error("Excepción en login:", error);
+      this.cdr.detectChanges();
     }
   }
 }

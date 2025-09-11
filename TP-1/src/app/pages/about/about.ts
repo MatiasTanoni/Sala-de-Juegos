@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GithubService } from '../../services/github';
+import { GithubService } from '../../services/github/github';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { Spinner } from '../../components/spinner/spinner';
