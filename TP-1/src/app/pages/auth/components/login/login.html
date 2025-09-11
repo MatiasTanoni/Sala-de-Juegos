@@ -44,7 +44,7 @@
     <div class="mt-6 space-y-3">
         @for (user of quickUsers; track user.email) {
         <button (click)="onQuickLogin(user)"
-            class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-xl shadow transition">
+            class="w-full flex flex-col bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-xl shadow transition">
             Ingresar como {{ user.label }}
         </button>
         }
