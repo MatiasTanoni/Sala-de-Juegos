@@ -1,1 +1,41 @@
-<p class="text-white"> HOMEE</p>
+<div class="w-full max-w-3xl mx-auto p-6 bg-gray-900 text-white border border-gray-800 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold text-red-600 mb-4 text-center">🎮 Bienvenido a la Sala de Juegos</h1>
+    <p class="text-gray-300 text-center mb-8">
+        Aquí encontrarás una selección de juegos clásicos y un juego propio.
+        ¡Poné a prueba tu suerte, memoria y estrategia!
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg border border-gray-700 text-center">
+            <h2 class="text-xl font-semibold text-white mb-2">🔤 Ahorcado</h2>
+            <p class="text-gray-400 mb-4">Adivina la palabra antes de que se complete el dibujo.</p>
+            <a routerLink="/ahorcado" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold">
+                Jugar
+            </a>
+        </div>
+
+        <div class="p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg border border-gray-700 text-center">
+            <h2 class="text-xl font-semibold text-white mb-2">🔢 Mayor o Menor</h2>
+            <p class="text-gray-400 mb-4">¿El próximo número será más grande o más chico?</p>
+            <a routerLink="/mayor-menor" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold">
+                Jugar
+            </a>
+        </div>
+
+        <div class="p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg border border-gray-700 text-center">
+            <h2 class="text-xl font-semibold text-white mb-2">❓ Preguntados</h2>
+            <p class="text-gray-400 mb-4">Responde preguntas de trivia y demuestra tus conocimientos.</p>
+            <a routerLink="/preguntados" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold">
+                Jugar
+            </a>
+        </div>
+
+        <div class="p-4 bg-gray-800 rounded-xl shadow hover:shadow-lg border border-gray-700 text-center">
+            <h2 class="text-xl font-semibold text-white mb-2">🏆 El Tesoro Escondido</h2>
+            <p class="text-gray-400 mb-4">Busca el tesoro en un tablero 5x5 evitando trampas y ganando puntos.</p>
+            <a routerLink="/tesoro" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold">
+                Jugar
+            </a>
+        </div>
+    </div>
+</div>
