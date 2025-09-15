@@ -26,6 +26,8 @@
     <li><a routerLink="/auth" routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold"
         class="transition">Iniciar Sesión / Registrarse</a></li>
     } @else {
+    <li><a routerLink="/chat" routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold"
+        class="transition">Chat</a></li>
     <li class="flex items-center space-x-5">
       <span class="font-semibold">{{ "Bienvenido, " + userData + "!"}}</span>
       <button (click)="onLogout()"
@@ -48,6 +50,8 @@
   <li><a routerLink="/auth" routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold"
       class="transition">Iniciar Sesión / Registrarse</a></li>
   } @else {
+  <li><a routerLink="/chat" routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold"
+      class="transition">Chat</a></li>
   <li class="flex flex-col space-y-2">
     <span class="text-red-700 font-semibold">{{"Bienvenido, " + userData + "!"}}</span>
     <button (click)="onLogout()"

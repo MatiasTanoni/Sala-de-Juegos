@@ -32,8 +32,12 @@ export const routes: Routes =
             loadComponent: () => import('./pages/games/preguntados/preguntados').then(m => m.Preguntados)
         },
         {
-            path: 'eltesoroescondido',
+            path: 'el-tesoro-escondido',
             loadComponent: () => import('./pages/games/el-tesoro-escondido/el-tesoro-escondido').then(m => m.ElTesoroEscondido)
+        },
+        {
+            path: 'chat',
+            loadComponent: () => import('./pages/chat/chat').then(m => m.Chat)
         },
         {
             path: "**",
