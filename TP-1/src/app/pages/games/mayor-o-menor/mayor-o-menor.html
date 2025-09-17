@@ -1,1 +1,42 @@
-<p>mayor-o-menor works!</p>
+<div
+    class="mayor-menor text-white p-6 max-w-md mx-auto bg-gray-900 to-red-500 rounded-2xl shadow-2xl">
+    <h2 class="text-3xl font-bold text-center mb-6">🔢 Mayor o Menor</h2>
+
+    <!-- Juego en curso -->
+    <div *ngIf="!juegoTerminado">
+        <p class="text-center text-lg mb-4">¿Cuál es menor?</p>
+
+        <div class="numeros flex justify-center items-center gap-6 mb-6 text-2xl font-semibold">
+            <span class="numero px-4 py-2 bg-white/20 rounded-lg shadow-inner">{{ numeroActual }}</span>
+            <span class="barra text-xl font-bold">vs</span>
+            <span class="numero px-4 py-2 bg-white/20 rounded-lg shadow-inner">{{ siguienteNumero }}</span>
+        </div>
+
+        <div class="botones flex justify-center gap-6 mb-6">
+            <button (click)="predecir('mayor')"
+                class="px-6 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition">
+                Mayor
+            </button>
+            <button (click)="predecir('menor')"
+                class="px-6 py-2 bg-red-500 hover:bg-red-600 rounded-lg shadow-md font-semibold transition">
+                Menor
+            </button>
+        </div>
+
+        <div class="info-juego flex justify-around text-sm md:text-base bg-white/20 p-4 rounded-lg shadow-inner">
+            <p>❤️ Vidas: {{ vidas }}</p>
+            <p>⏱️ Tiempo: {{ tiempoRestante }}s</p>
+            <p>🎯 Puntos: {{ puntos }}</p>
+        </div>
+    </div>
+
+    <!-- Juego terminado -->
+    <div *ngIf="juegoTerminado" class="resultado text-center p-6 bg-white/20 rounded-xl shadow-inner">
+        <p class="text-2xl font-bold mb-4">💥 Juego terminado</p>
+        <p class="text-xl mb-6">🎯 Total de puntos: {{ puntos }}</p>
+        <button (click)="reiniciarJuego()"
+            class="px-6 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-md font-semibold transition">
+            Volver a jugar
+        </button>
+    </div>
+</div>
