@@ -6,6 +6,7 @@ export class Game {
   protected finished: boolean = false;
   protected victory: boolean = false;
   protected timerInterval: any;
+  protected isPause: boolean = false;
 
   startTimer(callback?: () => void) {
     this.totalSeconds = 180;
@@ -23,6 +24,10 @@ export class Game {
       }
     }, 1000);
   }
+
+
+  getPause(): boolean { return this.isPause; }
+  getFinished(): boolean { return this.finished; }
 
   protected updateTimeString() {
     const minutes = Math.floor(this.totalSeconds / 60);
