@@ -12,17 +12,17 @@ import { Router } from '@angular/router';
 
 export class MayorOMenor implements OnInit {
   showConfirmExit = signal(false);
-  displayedWord: any 
-  livesArray : any = [0,1,2]
-  score : any
-  paused : any
-  time : any
+  displayedWord: any
+  livesArray: any = [0, 1, 2]
+  score: any
+  paused: any
+  time: any
   rowsLetters: string[][] = [
     ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
     ['M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
   ];
 
-  constructor( private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
