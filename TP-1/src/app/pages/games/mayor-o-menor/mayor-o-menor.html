@@ -1,42 +1,53 @@
-<div
-    class="mayor-menor text-white p-6 max-w-md mx-auto bg-gray-900 to-red-500 rounded-2xl shadow-2xl">
-    <h2 class="text-3xl font-bold text-center mb-6">🔢 Mayor o Menor</h2>
+<div class="bg-gray-800 rounded-lg shadow-lg flex flex-col items-center border-2
+    w-[calc(100vw-4rem)] h-[calc(100vh-8rem)]
+    sm:w-[calc(100vw-6rem)] sm:h-[calc(100vh-10rem)]
+    md:w-[calc(100vw-10rem)] md:h-[calc(100vh-12rem)]
+    lg:w-[calc(100vw-20rem)] lg:h-[calc(100vh-14rem)]
+    relative">
 
-    <!-- Juego en curso -->
-    <div *ngIf="!juegoTerminado">
-        <p class="text-center text-lg mb-4">¿Cuál es menor?</p>
+    <!-- Header superior -->
+    <div class="flex w-full items-center justify-between p-4 relative">
 
-        <div class="numeros flex justify-center items-center gap-6 mb-6 text-2xl font-semibold">
-            <span class="numero px-4 py-2 bg-white/20 rounded-lg shadow-inner">{{ numeroActual }}</span>
-            <span class="barra text-xl font-bold">vs</span>
-            <span class="numero px-4 py-2 bg-white/20 rounded-lg shadow-inner">{{ siguienteNumero }}</span>
-        </div>
-
-        <div class="botones flex justify-center gap-6 mb-6">
-            <button (click)="predecir('mayor')"
-                class="px-6 py-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-md font-semibold transition">
-                Mayor
+        <!-- Botones play/pause -->
+        <div class="flex items-center gap-2">
+            @if (paused) {
+            <button (click)="resume()"
+                class="border-2 border-white text-white rounded-full p-2 flex items-center justify-center cursor-pointer hover:bg-white hover:border-white hover:text-gray-800 transition">
+                <span class="material-icons text-sm">play_arrow</span>
             </button>
-            <button (click)="predecir('menor')"
-                class="px-6 py-2 bg-red-500 hover:bg-red-600 rounded-lg shadow-md font-semibold transition">
-                Menor
+            } @else {
+            <button (click)="pause()"
+                class="border-2 border-white text-white rounded-full p-2 flex items-center justify-center cursor-pointer hover:bg-white hover:border-white hover:text-gray-800 transition">
+                <span class="material-icons text-sm">pause</span>
+            </button>
+            }
+
+            <!-- Botón Salir -->
+            <button (click)="requestExit()"
+                class="border-2 border-white text-white rounded-full p-2 flex items-center justify-center cursor-pointer hover:bg-white hover:border-white hover:text-gray-800 transition">
+                <span class="material-icons text-sm">logout</span>
             </button>
         </div>
 
-        <div class="info-juego flex justify-around text-sm md:text-base bg-white/20 p-4 rounded-lg shadow-inner">
-            <p>❤️ Vidas: {{ vidas }}</p>
-            <p>⏱️ Tiempo: {{ tiempoRestante }}s</p>
-            <p>🎯 Puntos: {{ puntos }}</p>
+        <!-- Timer  -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+            <span class="material-icons text-white text-xl md:text-2xl">schedule</span>
+            <span class="text-lg font-bold text-white md:text-2xl">{{ time }}</span>
         </div>
+
+        <!-- Score  -->
+        <div
+            class="text-white text-sm md:text-base font-medium opacity-80 border-2 rounded-lg p-2 flex items-center gap-1">
+            <span class="material-icons text-yellow-500">star</span>
+            {{ score }}
+        </div>
+
+
     </div>
 
-    <!-- Juego terminado -->
-    <div *ngIf="juegoTerminado" class="resultado text-center p-6 bg-white/20 rounded-xl shadow-inner">
-        <p class="text-2xl font-bold mb-4">💥 Juego terminado</p>
-        <p class="text-xl mb-6">🎯 Total de puntos: {{ puntos }}</p>
-        <button (click)="reiniciarJuego()"
-            class="px-6 py-2 bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-md font-semibold transition">
-            Volver a jugar
-        </button>
+    <!-- Contenedor central que se adapta al espacio -->
+    <div class="flex-1 flex flex-col items-center justify-center w-full">
+
     </div>
+
 </div>

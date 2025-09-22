@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -10,80 +11,45 @@ import { CommonModule } from '@angular/common';
 
 
 export class MayorOMenor implements OnInit {
-  numeroActual = 0;
-  siguienteNumero = 0;
-  puntos = 0;
-  vidas = 3;
-  juegoTerminado = false;
-  tiempoRestante = 10;
-  intervalo: any;
+  showConfirmExit = signal(false);
+  displayedWord: any 
+  livesArray : any = [0,1,2]
+  score : any
+  paused : any
+  time : any
+  rowsLetters: string[][] = [
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
+    ['M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  ];
 
-  constructor() {}
+  constructor( private router: Router) { }
 
-  ngOnInit() {
-    this.iniciarJuego();
+  ngOnInit(): void {
   }
 
-  iniciarJuego() {
-    this.numeroActual = this.generarNumero();
-    this.siguienteNumero = this.generarNumero();
-    this.puntos = 0;
-    this.vidas = 3;
-    this.juegoTerminado = false;
-    this.iniciarTemporizador();
+  ngOnDestroy(): void {
   }
 
-  generarNumero(): number {
-    return Math.floor(Math.random() * 100) + 1;
+  pause(): void {
   }
 
-  predecir(eleccion: 'mayor' | 'menor') {
-    const correcto =
-      (eleccion === 'mayor' && this.siguienteNumero > this.numeroActual) ||
-      (eleccion === 'menor' && this.siguienteNumero < this.numeroActual);
-
-    if (correcto) {
-      this.puntos++;
-    } else {
-      this.vidas--;
-    }
-
-    if (this.vidas <= 0) {
-      this.terminarJuego();
-      return;
-    }
-
-    this.numeroActual = this.siguienteNumero;
-    this.siguienteNumero = this.generarNumero();
-    this.reiniciarTemporizador();
+  resume(): void {
   }
 
-  iniciarTemporizador() {
-    this.tiempoRestante = 10;
-    this.intervalo = setInterval(() => {
-      this.tiempoRestante--;
-      if (this.tiempoRestante <= 0) {
-        this.vidas--;
-        if (this.vidas <= 0) {
-          this.terminarJuego();
-        } else {
-          this.numeroActual = this.siguienteNumero;
-          this.siguienteNumero = this.generarNumero();
-          this.reiniciarTemporizador();
-        }
-      }
-    }, 1000);
+  exit(): void {
+    this.router.navigate(['/home']);
   }
 
-  reiniciarTemporizador() {
-    clearInterval(this.intervalo);
-    this.iniciarTemporizador();
+  requestExit(): void {
+    this.showConfirmExit.set(true);
   }
 
-  async terminarJuego() {
+  confirmExit(): void {
+    this.showConfirmExit.set(false);
+    this.exit();
   }
 
-  reiniciarJuego() {
-    this.iniciarJuego();
+  cancelExit(): void {
+    this.showConfirmExit.set(false);
   }
 }
