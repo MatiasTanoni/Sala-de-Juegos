@@ -32,7 +32,7 @@ export class MayorOMenor extends Game {
 
   //getts
   get paused(): boolean { return this.mayorMenorService.getPause(); }
-
+  get livesArray(): any[] { return Array(this.mayorMenorService.getLives()).fill(0); }
 
   guess(higher: boolean): void {
     const result = this.mayorMenorService.guess(higher);
