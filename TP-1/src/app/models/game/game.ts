@@ -34,7 +34,7 @@ export class Game {
   getFinished(): boolean { return this.finished; }
   getLives(): number { return this.lives; }
   getRoundVictory(): boolean { return this.roundVictory; }
-  getVictory(): boolean { return this.victory; } 
+  getVictory(): boolean { return this.victory; }
   //set
   setScore(score: number) { this.score = score; }
   setLives(lives: number) { this.lives = lives; }
@@ -60,6 +60,23 @@ export class Game {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.timerInterval = null;
+    }
+  }
+
+  async endGame(won: boolean, gameName: string): Promise<void> {
+    this.stopTimer();
+    this.finished = true;
+    this.victory = won;
+
+    if (this.victory) {
+      //CALCULAR EL SCORE FINAL
+    }
+
+    try {
+      // GUARDAR EL NOMNRE Y ID DEL USUARI
+    }
+    catch (error) {
+      console.error('Error al guardar resultado:',);
     }
   }
 }

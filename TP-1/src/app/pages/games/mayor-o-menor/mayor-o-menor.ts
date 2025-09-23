@@ -33,6 +33,8 @@ export class MayorOMenor extends Game {
   //getts
   get paused(): boolean { return this.mayorMenorService.getPause(); }
   get livesArray(): any[] { return Array(this.mayorMenorService.getLives()).fill(0); }
+  get currentCardImage(): string { return `public/images/mayor-menor/${this.currentCard}.png`; }
+
 
   guess(higher: boolean): void {
     const result = this.mayorMenorService.guess(higher);
