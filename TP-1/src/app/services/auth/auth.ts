@@ -16,6 +16,10 @@ export class Auth {
     this.supabase = this.db.client
   }
 
+  getUser(): User | boolean {
+    return this.user();
+  }
+
   async logout(): Promise<{ success: boolean; message: string }> {
     try {
       const { error } = await this.supabase.auth.signOut();
@@ -108,8 +112,8 @@ export class Auth {
       }
 
       this.user.set({
-        ...user,         
-        name: name,      
+        ...user,
+        name: name,
         apellido: lastName,
         age: age
       });

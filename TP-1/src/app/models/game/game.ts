@@ -1,5 +1,4 @@
 
-
 export class Game {
   protected time: string = '03:00';
   protected totalSeconds: number = 180;
@@ -28,9 +27,29 @@ export class Game {
     }, 1000);
   }
 
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+  }
+  resumeTimer(callback?: () => void) {
+    if (this.timerInterval || this.totalSeconds <= 0) return;
+
+    this.timerInterval = setInterval(() => {
+      if (this.totalSeconds > 0) {
+        this.totalSeconds--;
+        this.updateTimeString();
+      } else {
+        this.stopTimer();
+        if (callback) callback();
+      }
+    }, 1000);
+  }
   //get
   getScore(): number { return this.score; }
   getPause(): boolean { return this.isPause; }
+  getTime(): string { return this.time; }
   getFinished(): boolean { return this.finished; }
   getLives(): number { return this.lives; }
   getRoundVictory(): boolean { return this.roundVictory; }
@@ -58,11 +77,14 @@ export class Game {
     return num < 10 ? `0${num}` : `${num}`;
   }
 
-  stopTimer() {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-      this.timerInterval = null;
-    }
+  pause() {
+    this.setPause(true);
+    this.stopTimer();
+  }
+
+  resume() {
+    this.setPause(false);
+    this.resumeTimer();
   }
 
   async endGame(won: boolean, gameName: string): Promise<void> {
@@ -82,27 +104,5 @@ export class Game {
     }
   }
 
-  pause() {
-    this.setPause(true);
-    this.stopTimer();
-  }
 
-  resume() {
-    this.setPause(false);
-    this.resumeTimer();
-  }
-
-  resumeTimer(callback?: () => void) {
-    if (this.timerInterval || this.totalSeconds <= 0) return;
-
-    this.timerInterval = setInterval(() => {
-      if (this.totalSeconds > 0) {
-        this.totalSeconds--;
-        this.updateTimeString();
-      } else {
-        this.stopTimer();
-        if (callback) callback();
-      }
-    }, 1000);
-  }
 }

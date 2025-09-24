@@ -21,7 +21,7 @@ export class MayorOMenorService extends Game {
   newGame(): void {
     this.totalSeconds = 180;
     this.setLives(3);
-    this.startTimer();
+    this.startTimer(() => this.getVictory() ? this.endGame(true, this.name) : this.endGame(false, this.name));
     this.setFinished(false);
     this.drawInitialCard();
   }
@@ -91,5 +91,9 @@ export class MayorOMenorService extends Game {
 
   getCurrentCard(): number {
     return this.currentCard;
+  }
+
+  isRoundWon(): boolean {
+    return this.roundVictory;
   }
 }
