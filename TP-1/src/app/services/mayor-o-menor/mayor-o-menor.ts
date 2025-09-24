@@ -20,6 +20,7 @@ export class MayorOMenorService extends Game {
 
   newGame(): void {
     this.totalSeconds = 180;
+    this.setLives(3);
     this.startTimer();
     this.setFinished(false);
     this.drawInitialCard();
