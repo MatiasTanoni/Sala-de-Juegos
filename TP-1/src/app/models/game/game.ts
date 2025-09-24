@@ -87,6 +87,16 @@ export class Game {
     this.resumeTimer();
   }
 
+  calculateFinalScore(): void {
+    if (!this.victory) return;
+
+    const bonusFromLives = this.lives * 1000;
+    const bonusFromTime = this.totalSeconds * 100;
+    const totalBonus = bonusFromLives + bonusFromTime;
+
+    this.score += totalBonus;
+  }
+
   async endGame(won: boolean, gameName: string): Promise<void> {
     this.stopTimer();
     this.finished = true;
@@ -103,6 +113,4 @@ export class Game {
       console.error('Error al guardar resultado:',);
     }
   }
-
-
 }
