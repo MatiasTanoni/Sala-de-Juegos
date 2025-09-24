@@ -1,15 +1,13 @@
-<div class="bg-gray-900 rounded-lg shadow-lg flex flex-col items-center border-2
-    w-[80vw] h-[70vh]
-    sm:w-[70vw] sm:h-[60vh]
-    md:w-[60vw] md:h-[55vh]
-    lg:w-[50vw] lg:h-[50vh]
-    relative">
-
+<div class="bg-gray-800 rounded-lg shadow-lg flex flex-col items-center border-2
+            w-[calc(100vw-4rem)] h-[calc(100vh-8rem)]
+            sm:w-[calc(100vw-6rem)] sm:h-[calc(100vh-10rem)]
+            md:w-[calc(100vw-10rem)] md:h-[calc(100vh-12rem)]
+            lg:w-[calc(100vw-20rem)] lg:h-[calc(100vh-14rem)]">
 
     <!-- Header superior -->
     <div class="flex w-full items-center justify-between p-4 relative">
 
-        <!-- Botones play/pause -->
+        <!-- Botones play/pause y salir -->
         <div class="flex items-center gap-2">
             @if (paused) {
             <button (click)="resume()"
@@ -23,17 +21,18 @@
             </button>
             }
 
-            <!-- Botón Salir -->
             <button (click)="requestExit()"
                 class="border-2 border-white text-white rounded-full p-2 flex items-center justify-center cursor-pointer hover:bg-white hover:border-white hover:text-gray-800 transition">
                 <span class="material-icons text-sm">logout</span>
             </button>
         </div>
 
-        <!-- Timer  -->
-        <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2">
-            <!-- <span class="material-icons text-white text-xl md:text-2xl">schedule</span> -->
-            <span class="text-lg font-bold text-white md:text-2xl">{{ time }}</span>
+        <!-- Timer -->
+        <div class="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-1">
+            <div class="flex items-center gap-2">
+                <span class="material-icons text-white text-xl md:text-2xl">schedule</span>
+                <span class="text-lg font-bold text-white md:text-2xl">{{ time }}</span>
+            </div>
         </div>
 
         <!-- Vidas y Score -->
@@ -54,8 +53,6 @@
                 {{ score }}
             </div>
         </div>
-
-
     </div>
 
     <!-- Contenedor central que se adapta al espacio -->
@@ -63,7 +60,8 @@
 
         <!-- Mensaje de éxito -->
         @if (roundVictory) {
-            GANO
+        <app-success-message [title]="'¡Respuesta correcta!'" [message]="'Muy bien, acertaste la carta.'">
+        </app-success-message>
         } @else {
 
         <!-- Carta actual -->
@@ -85,6 +83,4 @@
         }
         }
     </div>
-
-
 </div>

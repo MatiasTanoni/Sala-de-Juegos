@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Game } from '../../../models/game/game';
 import { MayorOMenorService } from '../../../services/mayor-o-menor/mayor-o-menor';
+import { SuccessMessage } from '../../../components/success-message/success-message';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [CommonModule],
+  imports: [CommonModule, SuccessMessage],
   templateUrl: './mayor-o-menor.html',
   styleUrl: './mayor-o-menor.css'
 })
@@ -48,10 +49,12 @@ export class MayorOMenor extends Game {
     }
   }
 
-  pause(): void {
+  override pause(): void {
+    this.mayorMenorService.pause();
   }
 
-  resume(): void {
+  override resume(): void {
+    this.mayorMenorService.resume();
   }
 
   requestExit(): void {

@@ -36,6 +36,7 @@ export class Game {
   getRoundVictory(): boolean { return this.roundVictory; }
   getVictory(): boolean { return this.victory; }
   //set
+  setPause(isPause: boolean) { this.isPause = isPause; }
   setScore(score: number) { this.score = score; }
   setLives(lives: number) { this.lives = lives; }
   setRoundVictory(roundVictory: boolean) { this.roundVictory = roundVictory; }
@@ -51,6 +52,7 @@ export class Game {
     const seconds = this.totalSeconds % 60;
     this.time = `${this.padZero(minutes)}:${this.padZero(seconds)}`;
   }
+
 
   protected padZero(num: number): string {
     return num < 10 ? `0${num}` : `${num}`;
@@ -78,5 +80,29 @@ export class Game {
     catch (error) {
       console.error('Error al guardar resultado:',);
     }
+  }
+
+  pause() {
+    this.setPause(true);
+    this.stopTimer();
+  }
+
+  resume() {
+    this.setPause(false);
+    this.resumeTimer();
+  }
+
+  resumeTimer(callback?: () => void) {
+    if (this.timerInterval || this.totalSeconds <= 0) return;
+
+    this.timerInterval = setInterval(() => {
+      if (this.totalSeconds > 0) {
+        this.totalSeconds--;
+        this.updateTimeString();
+      } else {
+        this.stopTimer();
+        if (callback) callback();
+      }
+    }, 1000);
   }
 }
