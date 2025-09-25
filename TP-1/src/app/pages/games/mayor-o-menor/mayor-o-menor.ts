@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Game } from '../../../models/game/game';
 import { MayorOMenorService } from '../../../services/mayor-o-menor/mayor-o-menor';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 
@@ -83,11 +82,6 @@ export class MayorOMenor implements OnInit, OnDestroy {
     this.showGameResult = false;
   }
 
-  /**
-   * Método que se ejecuta cuando el juego ha terminado.
-   * 
-   * @returns {void} - No retorna ningún valor.
-   */
   onGameOver(): void {
     this.mayorMenorService.endGame(this.mayorMenorService.getVictory(), this.mayorMenorService.getName());
     this.exit();

@@ -1,11 +1,12 @@
 import { Databases } from "../../services/databases/databases";
 import { Auth } from "../../services/auth/auth";
+import { signal } from "@angular/core";
 
 export class Game {
   protected supabase: Databases = new Databases();
   protected authService: Auth = new Auth(this.supabase);
 
-  protected time: string = '03:00';
+  time = signal('03:00');
   protected totalSeconds: number = 180;
   protected finished: boolean = false;
   protected victory: boolean = false;
@@ -57,7 +58,7 @@ export class Game {
   //get
   getScore(): number { return this.score; }
   getPause(): boolean { return this.isPause; }
-  getTime(): string { return this.time; }
+  getTime(): string { return this.time(); }
   getFinished(): boolean { return this.finished; }
   getLives(): number { return this.lives; }
   getRoundVictory(): boolean { return this.roundVictory; }
@@ -75,7 +76,7 @@ export class Game {
   protected updateTimeString() {
     const minutes = Math.floor(this.totalSeconds / 60);
     const seconds = this.totalSeconds % 60;
-    this.time = `${this.padZero(minutes)}:${this.padZero(seconds)}`;
+    this.time.set(`${this.padZero(minutes)}:${this.padZero(seconds)}`);
   }
 
   loseLife() {
@@ -157,5 +158,4 @@ export class Game {
       console.error('Error al guardar resultado:', error);
     }
   }
-
 }
