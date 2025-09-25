@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink} from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { Auth } from '../../services/auth/auth';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +9,11 @@ import { RouterLink} from '@angular/router';
   styleUrl: './home.css'
 })
 export class Home {
-  constructor() { }
+  user: any | boolean = false;
+
+  constructor(public auth: Auth) { }
+
+  ngOnInit(): void {
+    this.user = this.auth.getUser(); // guardás el resultado en una propiedad pública
+  }
 }
