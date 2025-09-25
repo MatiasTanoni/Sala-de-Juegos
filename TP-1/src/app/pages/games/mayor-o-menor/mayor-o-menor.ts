@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MayorOMenorService } from '../../../services/mayor-o-menor/mayor-o-menor';
 import { SuccessMessage } from '../../../components/success-message/success-message';
+import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [CommonModule, SuccessMessage],
+  imports: [CommonModule, SuccessMessage, ConfirmDialogComponent],
   templateUrl: './mayor-o-menor.html',
   styleUrl: './mayor-o-menor.css'
 })

@@ -77,4 +77,9 @@
             <span class="material-icons text-base sm:text-lg">logout</span>
         </button>
     </div>
+    @if (showConfirmExit()) {
+    <app-confirm-dialog title="¿Deseas salir del juego?" message="Perderás el progreso actual."
+        (confirm)="confirmExit()" (cancel)="cancelExit()">
+    </app-confirm-dialog>
+    }
 </div>
