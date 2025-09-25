@@ -8,7 +8,7 @@ export class Game {
 
   time = signal('02:00');
   protected totalSeconds: number = 120;
-  protected finished: boolean = false;
+  finished = signal(false);         
   protected victory: boolean = false;
   protected timerInterval: any;
   protected isPause: boolean = false;
@@ -20,7 +20,7 @@ export class Game {
 
   startTimer(callback?: () => void) {
     this.totalSeconds = 120;
-    this.finished = false;
+    this.finished.set(false);  
     this.victory = false;
     this.updateTimeString();
 
@@ -55,23 +55,24 @@ export class Game {
       }
     }, 1000);
   }
-  //get
+
+  // --- Getters ---
   getScore(): number { return this.score; }
   getPause(): boolean { return this.isPause; }
   getTime(): string { return this.time(); }
-  getFinished(): boolean { return this.finished; }
+  getFinished(): boolean { return this.finished(); }
   getLives(): number { return this.lives; }
   getRoundVictory(): boolean { return this.roundVictory; }
   getVictory(): boolean { return this.victory; }
-  //set
+
+  // --- Setters ---
   setPause(isPause: boolean) { this.isPause = isPause; }
   setScore(score: number) { this.score = score; }
   setLives(lives: number) { this.lives = lives; }
   setRoundVictory(roundVictory: boolean) { this.roundVictory = roundVictory; }
   setVictory(victory: boolean) { this.victory = victory; }
   setTotalSeconds(totalSeconds: number) { this.totalSeconds = totalSeconds; }
-  setFinished(finished: boolean) { this.finished = finished; }
-
+  setFinished(finished: boolean) { this.finished.set(finished); }
 
   protected updateTimeString() {
     const minutes = Math.floor(this.totalSeconds / 60);
@@ -114,16 +115,13 @@ export class Game {
 
   calculateFinalScore(): void {
     if (!this.victory) return;
-
     const bonusFromTime = this.totalSeconds * 100;
-    const totalBonus = + bonusFromTime;
-
-    this.score += totalBonus;
+    this.score += bonusFromTime;
   }
 
   async endGame(won: boolean, gameName: string): Promise<void> {
     this.stopTimer();
-    this.finished = true;
+    this.finished.set(true); 
     this.victory = won;
 
     if (this.victory) {
