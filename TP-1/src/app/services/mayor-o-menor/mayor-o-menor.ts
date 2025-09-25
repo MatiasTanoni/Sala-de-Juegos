@@ -19,7 +19,7 @@ export class MayorOMenorService extends Game {
   }
 
   newGame(): void {
-    this.totalSeconds = 180;
+    this.totalSeconds = 120;
     this.setLives(3);
     this.startTimer(() => this.getVictory() ? this.endGame(true, this.name) : this.endGame(false, this.name));
     this.setFinished(false);

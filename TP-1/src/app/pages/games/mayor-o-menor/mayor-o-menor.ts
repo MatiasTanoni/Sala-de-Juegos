@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { MayorOMenorService } from '../../../services/mayor-o-menor/mayor-o-menor';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
+import { GameResultComponent } from '../../../components/game-result/game-result';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [CommonModule, SuccessMessage, ConfirmDialogComponent],
+  imports: [CommonModule, SuccessMessage, ConfirmDialogComponent, GameResultComponent],
   templateUrl: './mayor-o-menor.html',
   styleUrl: './mayor-o-menor.css'
 })

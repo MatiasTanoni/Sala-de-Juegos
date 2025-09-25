@@ -6,8 +6,8 @@ export class Game {
   protected supabase: Databases = new Databases();
   protected authService: Auth = new Auth(this.supabase);
 
-  time = signal('03:00');
-  protected totalSeconds: number = 180;
+  time = signal('02:00');
+  protected totalSeconds: number = 120;
   protected finished: boolean = false;
   protected victory: boolean = false;
   protected timerInterval: any;
@@ -19,7 +19,7 @@ export class Game {
   protected userId = typeof this.user === 'object' && this.user !== null ? this.user.id : null;
 
   startTimer(callback?: () => void) {
-    this.totalSeconds = 180;
+    this.totalSeconds = 120;
     this.finished = false;
     this.victory = false;
     this.updateTimeString();
