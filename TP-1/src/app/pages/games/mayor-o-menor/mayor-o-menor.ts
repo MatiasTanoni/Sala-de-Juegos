@@ -31,7 +31,7 @@ export class MayorOMenor implements OnInit, OnDestroy {
   }
 
   //getts
-  get currentCardImage(): string { return `assets/images/mayor-menor/${this.currentCard}.png`; }
+  get currentCardImage(): string { return `mayor-menor/${this.currentCard}.png`; }
   get paused(): boolean { return this.mayorMenorService.getPause(); }
   get time(): string { return this.mayorMenorService.getTime(); }
   get livesArray(): any[] { return Array(this.mayorMenorService.getLives()).fill(0); }

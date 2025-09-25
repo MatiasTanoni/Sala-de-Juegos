@@ -1,35 +1,35 @@
 <div class="bg-gray-900 rounded-lg shadow-lg flex flex-col items-center border-2
-            w-[calc(100vw-4rem)] h-[calc(100vh-8rem)]
-            sm:w-[calc(100vw-6rem)] sm:h-[calc(100vh-10rem)]
-            md:w-[calc(100vw-10rem)] md:h-[calc(100vh-12rem)]
-            lg:w-[calc(100vw-20rem)] lg:h-[calc(100vh-14rem)] relative">
+            w-[95vw] h-[85vh] 
+            sm:w-[80vw] sm:h-[80vh]
+            md:w-[70vw] md:h-[75vh]
+            lg:w-[60vw] lg:h-[70vh] relative">
 
     <!-- Header superior -->
-    <div class="flex w-full items-center justify-between p-4 border-b border-gray-700">
+    <div class="flex w-full items-center justify-between p-2 sm:p-4 border-b border-gray-700">
 
         <!-- Timer -->
-        <div class="flex items-center gap-2 bg-gray-700 px-3 py-1 rounded-full shadow-md">
-            <span class="material-icons text-blue-400 text-lg">timer</span>
-            <span class="text-lg font-bold text-white">{{ time }}</span>
+        <div class="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded-full shadow-md">
+            <span class="material-icons text-blue-400 text-base sm:text-lg">timer</span>
+            <span class="text-sm sm:text-lg font-bold text-white">{{ time }}</span>
         </div>
 
         <!-- Vidas -->
-        <div class="flex items-center gap-1">
+        <div class="flex items-center gap-0.5 sm:gap-1">
             @for (life of livesArray; track $index) {
-            <span class="material-icons text-red-500 text-xl">favorite</span>
+            <span class="material-icons text-red-500 text-base sm:text-xl">favorite</span>
             }
         </div>
 
         <!-- Score -->
         <div
-            class="bg-gray-700 text-white text-sm font-semibold rounded-full px-3 py-1 flex items-center gap-1 shadow-md">
-            <span class="material-icons text-yellow-400">emoji_events</span>
+            class="bg-gray-700 text-white text-xs sm:text-sm md:text-base font-semibold rounded-full px-2 sm:px-3 py-1 flex items-center gap-1 shadow-md">
+            <span class="material-icons text-yellow-400 text-base sm:text-lg">emoji_events</span>
             {{ score }}
         </div>
     </div>
 
     <!-- Contenedor central -->
-    <div class="flex-1 flex flex-col items-center justify-center w-full">
+    <div class="flex-1 flex flex-col items-center justify-center w-full px-2 sm:px-4">
 
         @if (roundVictory) {
         <!-- Mensaje de éxito -->
@@ -39,19 +39,19 @@
 
         <!-- Carta actual -->
         <div
-            class="relative w-56 md:w-72 rounded-3xl shadow-xl border-4 border-white bg-white p-4 mb-8 flex items-center justify-center">
-            <img [src]="currentCardImage" alt="Carta actual" class="w-full h-auto rounded-2xl" />
+            class="relative w-40 sm:w-56 md:w-72 rounded-2xl sm:rounded-3xl shadow-xl border-2 sm:border-4 border-white bg-white p-2 sm:p-4 mb-6 sm:mb-8 flex items-center justify-center">
+            <img [src]="currentCardImage" alt="Carta actual" class="w-full h-auto rounded-xl sm:rounded-2xl" />
         </div>
 
         <!-- Botones Mayor/Menor -->
         @if (!finished || !paused) {
-        <div class="flex gap-8 mt-4">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-2 sm:mt-4">
             <button (click)="guess(true)" [disabled]="paused"
-                class="bg-green-500 text-white hover:bg-green-600 transition-all px-8 py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
+                class="bg-green-500 text-white hover:bg-green-600 transition-all px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
                 Mayor
             </button>
             <button (click)="guess(false)" [disabled]="paused"
-                class="bg-red-500 text-white hover:bg-red-600 transition-all px-8 py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
+                class="bg-red-500 text-white hover:bg-red-600 transition-all px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
                 Menor
             </button>
         </div>
@@ -60,21 +60,21 @@
     </div>
 
     <!-- Controles fijos abajo a la izquierda -->
-    <div class="absolute bottom-4 left-4 flex gap-3">
+    <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 flex gap-2 sm:gap-3">
         @if (paused) {
         <button (click)="resume()"
-            class="bg-green-500 text-white rounded-full p-3 flex items-center justify-center hover:bg-green-600 transition shadow-md">
-            <span class="material-icons">play_arrow</span>
+            class="bg-green-500 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-green-600 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">play_arrow</span>
         </button>
         } @else {
         <button (click)="pause()"
-            class="bg-yellow-500 text-white rounded-full p-3 flex items-center justify-center hover:bg-yellow-600 transition shadow-md">
-            <span class="material-icons">pause</span>
+            class="bg-yellow-500 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-yellow-600 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">pause</span>
         </button>
         }
         <button (click)="requestExit()"
-            class="bg-red-500 text-white rounded-full p-3 flex items-center justify-center hover:bg-red-600 transition shadow-md">
-            <span class="material-icons">logout</span>
+            class="bg-red-500 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-600 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">logout</span>
         </button>
     </div>
 </div>
