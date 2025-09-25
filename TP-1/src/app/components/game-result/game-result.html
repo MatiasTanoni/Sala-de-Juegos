@@ -1,15 +1,9 @@
-<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 backdrop-blur-sm">
-    <div class="bg-gray-800 text-white rounded-lg p-6 text-center w-[90%] max-w-sm shadow-md">
-
-        <!-- Título de Victoria o Derrota -->
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 z-50 backdrop-blur-sm">
+    <div
+        class="bg-gray-800 rounded-2xl shadow-xl p-6 w-full max-w-sm text-center transform transition-all scale-95 hover:scale-100">
         <h2 class="text-lg mb-4">
             {{ isVictory ? 'Has ganado.' : 'Has perdido.' }}
         </h2>
-
-        <!-- Mensaje de resultado -->
-        <p class="text-lg mb-4">
-            {{ isVictory ? 'Has ganado.' : 'Has perdido.' }}
-        </p>
 
         <p class="text-lg font-medium mb-4">
             Puntuación lograda: {{ score }}. {{ message }}
