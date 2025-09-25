@@ -27,7 +27,6 @@ export class Navbar {
       }
     });
 
-    // 👇 detectar si estamos en un juego
     this.router.events.subscribe(() => {
       const router = this.router.url;
       this.blockNavegation =
