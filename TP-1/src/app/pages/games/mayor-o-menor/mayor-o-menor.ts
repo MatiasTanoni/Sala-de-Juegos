@@ -6,10 +6,11 @@ import { SuccessMessage } from '../../../components/success-message/success-mess
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 import { GameResultComponent } from '../../../components/game-result/game-result';
 import { Auth } from '../../../services/auth/auth';
+import { Spinner } from '../../../components/spinner/spinner';
 
 @Component({
   selector: 'app-mayor-menor',
-  imports: [CommonModule, SuccessMessage, ConfirmDialogComponent, GameResultComponent],
+  imports: [CommonModule, SuccessMessage, ConfirmDialogComponent, GameResultComponent, Spinner],
   templateUrl: './mayor-o-menor.html',
   styleUrl: './mayor-o-menor.css'
 })
