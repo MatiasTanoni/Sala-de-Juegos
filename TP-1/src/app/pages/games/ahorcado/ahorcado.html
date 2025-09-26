@@ -1,1 +1,91 @@
-<p>ahorcado works!</p>
+<div class="bg-gray-900 rounded-lg shadow-lg flex flex-col items-center border-2
+            w-[95vw] h-[85vh] 
+            sm:w-[80vw] sm:h-[80vh]
+            md:w-[70vw] md:h-[75vh]
+            lg:w-[60vw] lg:h-[70vh] relative">
+
+    <!-- Header superior -->
+    <div class="flex w-full items-center justify-between p-2 sm:p-4 border-b border-gray-700">
+
+        <!-- Timer -->
+        <div class="flex items-center gap-1 sm:gap-2 bg-gray-700 px-2 sm:px-3 py-1 rounded-full shadow-md">
+            <span class="material-icons text-blue-400 text-base sm:text-lg">timer</span>
+            <span class="text-sm sm:text-lg font-bold text-white">{{ time }}</span>
+        </div>
+
+        <!-- Vidas -->
+        <div class="flex items-center gap-0.5 sm:gap-1">
+            @for (life of livesArray; track $index) {
+            <span class="material-icons text-red-500 text-base sm:text-xl">favorite</span>
+            }
+        </div>
+
+        <!-- Score -->
+        <div
+            class="bg-gray-700 text-white text-xs sm:text-sm md:text-base font-semibold rounded-full px-2 sm:px-3 py-1 flex items-center gap-1 shadow-md">
+            <span class="material-icons text-yellow-400 text-base sm:text-lg">emoji_events</span>
+            {{ score }}
+        </div>
+    </div>
+
+    @if (true) {
+    <div class="flex-1 flex flex-col items-center justify-center w-full px-2 sm:px-4">
+
+        @if (roundVictory) {
+        <app-success-message [title]="'¡Respuesta correcta!'" [message]="'Muy bien, acertaste la carta.'">
+        </app-success-message>
+        } @else {
+
+        <div
+            class="relative w-40 sm:w-56 md:w-72 aspect-[3/4] rounded-3xl bg-gradient-to-br from-gray-600 to-gray-700 shadow-lg border border-gray-300 p-2 sm:p-4 mb-6 sm:mb-8 flex items-center justify-center">
+
+        </div>
+
+
+        @if (!finished || !paused) {
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-2 sm:mt-4">
+            <button (click)="guess()" [disabled]="paused"
+                class="bg-red-600 text-white hover:bg-red-700 transition-all px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
+                Mayor
+            </button>
+            <button (click)="guess()" [disabled]="paused"
+                class="bg-red-600 text-white hover:bg-red-700 transition-all px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold shadow-lg disabled:opacity-50">
+                Menor
+            </button>
+        </div>
+        }
+        }
+    </div>
+    }
+    @else{
+    <app-spinner></app-spinner>
+    }
+
+    <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 flex gap-2 sm:gap-3">
+        @if (paused) {
+        <button (click)="resume()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">play_arrow</span>
+        </button>
+        } @else {
+        <button (click)="pause()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">pause</span>
+        </button>
+        }
+        <button (click)="requestExit()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">logout</span>
+        </button>
+    </div>
+    @if (showConfirmExit()) {
+    <app-confirm-dialog title="¿Deseas salir del juego?" message="Perderás el progreso actual."
+        (confirm)="confirmExit()" (cancel)="cancelExit()">
+    </app-confirm-dialog>
+    }
+    @if (finished) {
+    <app-game-result [isVictory]="victory" [score]="score"
+        class="absolute inset-0 z-20 bg-black bg-opacity-80 flex items-center justify-center rounded-lg">
+    </app-game-result>
+    }
+</div>
