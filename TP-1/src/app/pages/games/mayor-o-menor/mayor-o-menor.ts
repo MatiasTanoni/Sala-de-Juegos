@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MayorOMenorService } from '../../../services/mayor-o-menor/mayor-o-menor';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 import { GameResultComponent } from '../../../components/game-result/game-result';
+import { Auth } from '../../../services/auth/auth';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -18,11 +19,16 @@ export class MayorOMenor implements OnInit, OnDestroy {
   currentCard: number = 0;
   showConfirmExit = signal(false);
   showGameResult: boolean = false;
-
-  constructor(private router: Router, private mayorMenorService: MayorOMenorService) {
+  user = computed<any | boolean>(() => this.auth.user());
+  constructor(private router: Router, private mayorMenorService: MayorOMenorService, private auth: Auth) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.auth.checkSession();
+    if (!this.user()) {
+      this.router.navigate(['/auth'], { replaceUrl: true });
+      return;
+    }
     this.mayorMenorService.newGame();
     this.currentCard = this.mayorMenorService.getCurrentCard();
   }

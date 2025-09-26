@@ -13,10 +13,54 @@ export class Auth {
   router = inject(Router);
 
   constructor(private db: Databases) {
-    this.supabase = this.db.client
+    this.supabase = this.db.client;
+
+    this.checkSession();
+
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      if (session === null) {
+        this.user.set(false);
+        localStorage.removeItem('user');
+        return;
+      }
+
+
+      if (session && session.expires_at) {
+        localStorage.setItem('session_expires_at', session.expires_at.toString());
+
+        const msUntilExpire = session.expires_at * 1000 - Date.now();
+        if (msUntilExpire > 0) {
+          setTimeout(() => {
+            this.logout();
+          }, msUntilExpire);
+        }
+      }
+
+      this.supabase.auth.getUser().then(async ({ data, error }) => {
+        if (error) {
+          console.error('Error al obtener el usuario autenticado:', error.message);
+          return;
+        }
+
+        const userId = data.user.id;
+        const { data: user, error: userError } = await this.supabase
+          .from('users')
+          .select('*')
+          .eq('id', userId)
+          .single();
+
+        if (userError) {
+          console.error('Error al obtener datos del usuario desde la tabla usuarios:', userError.message);
+          return;
+        }
+
+        this.user.set(user);
+        localStorage.setItem('user', JSON.stringify(user));
+      });
+    });
   }
 
-  getUser(): User | boolean {
+  getUser(): any | boolean {
     return this.user();
   }
 
@@ -127,4 +171,19 @@ export class Auth {
     }
   }
 
+  checkSession(): void {
+    const storedUser = localStorage.getItem('user');
+    const expiresAt = localStorage.getItem('session_expires_at');
+
+    if (expiresAt && Date.now() / 1000 > parseInt(expiresAt)) {
+      this.logout();
+      return;
+    }
+
+    if (storedUser) {
+      this.user.set(JSON.parse(storedUser));
+    } else {
+      this.user.set(false);
+    }
+  }
 }

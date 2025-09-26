@@ -27,10 +27,11 @@ export class Databases {
     return data ? data.id : null;
   }
 
-  async getUserById(userId: string | null): Promise<{ firstname: string, lastname: string } | null> {
+  async getUserById(userId: string | null): Promise<{ name: string, apellido: string } | null> {
+    console.log(userId)
     const { data, error } = await this.supabase
       .from('users')
-      .select('firstname, lastname')
+      .select('name, apellido')
       .eq('id', userId)
       .single();
 
@@ -39,7 +40,7 @@ export class Databases {
       return null;
     }
 
-    return data ? { firstname: data.firstname, lastname: data.lastname } : null;
+    return data ? { name: data.name, apellido: data.apellido } : null;
   }
 
   get client(): SupabaseClient {

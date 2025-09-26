@@ -8,7 +8,7 @@ export class Game {
 
   time = signal('02:00');
   protected totalSeconds: number = 120;
-  finished = signal(false);         
+  finished = signal(false);
   protected victory: boolean = false;
   protected timerInterval: any;
   protected isPause: boolean = false;
@@ -20,7 +20,7 @@ export class Game {
 
   startTimer(callback?: () => void) {
     this.totalSeconds = 120;
-    this.finished.set(false);  
+    this.finished.set(false);
     this.victory = false;
     this.updateTimeString();
 
@@ -98,6 +98,10 @@ export class Game {
     this.resumeTimer();
   }
 
+  resumeNewGame() {
+    this.setPause(false);
+  }
+
   private async saveResult(data: { id_user: string | null; id_game: string; firstname: string | null; lastname: string | null; score: number; victory: boolean }) {
     if (!this.supabase) throw new Error('Supabase client not initialized');
 
@@ -121,7 +125,7 @@ export class Game {
 
   async endGame(won: boolean, gameName: string): Promise<void> {
     this.stopTimer();
-    this.finished.set(true); 
+    this.finished.set(true);
     this.victory = won;
 
     if (this.victory) {
@@ -142,13 +146,13 @@ export class Game {
         return;
       }
 
-      const { firstname, lastname } = user;
+      const { name, apellido } = user;
 
       await this.saveResult({
         id_user: this.userId,
         id_game: idGame,
-        firstname: firstname,
-        lastname: lastname,
+        firstname: name,
+        lastname: apellido,
         score: this.score,
         victory: this.victory
       });
