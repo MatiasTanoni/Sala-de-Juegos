@@ -109,6 +109,7 @@ export class AhorcadoService extends Game {
     return this.guessedLetters.has(letter);
   }
   isRoundWon(): boolean {
-    return true;
+    return this.displayed.join('') === this.word;
   }
+
 }

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
-import { Spinner } from '../../../components/spinner/spinner';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 import { GameResultComponent } from '../../../components/game-result/game-result';
 import { AhorcadoService } from '../../../services/ahorcado/ahorcadoService';
@@ -8,7 +7,7 @@ import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confi
 
 @Component({
   selector: 'app-ahorcado',
-  imports: [Spinner, SuccessMessage, GameResultComponent, ConfirmDialogComponent],
+  imports:  [SuccessMessage, GameResultComponent, ConfirmDialogComponent],
   templateUrl: './ahorcado.html',
   styleUrl: './ahorcado.css'
 })
