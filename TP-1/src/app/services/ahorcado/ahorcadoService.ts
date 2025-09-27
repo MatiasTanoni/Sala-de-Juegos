@@ -14,6 +14,8 @@ export class AhorcadoService extends Game {
     'JAVASCRIPT', 'VARIABLE', 'COMPONENTE', 'FUNCION', 'SERVICIO',
     'MODULO', 'TYPESCRIPT', 'TEMPLATE', 'HTML', 'CSS', 'JUEGO', 'LOGICA'
   ];
+  private wordList: string[] = [];
+  private guessedWords: Set<string> = new Set();
 
   newGame() {
     this.setLives(7);
@@ -29,7 +31,9 @@ export class AhorcadoService extends Game {
     this.loadNewWord();
 
   }
-
+  getWord(): string {
+    return this.word;
+  }
   private getRandomWord(): string {
     const remainingWords = this.wordList.filter(word => !this.guessedWords.has(word));
     const index = Math.floor(Math.random() * remainingWords.length);
@@ -49,7 +53,9 @@ export class AhorcadoService extends Game {
   isGameOver(): boolean {
     return this.getLives() === 0;
   }
-
+  getDisplayedWord(): string[] {
+    return this.displayed;
+  }
   guessLetter(letter: string) {
 
   }

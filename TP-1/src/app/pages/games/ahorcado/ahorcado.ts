@@ -37,6 +37,8 @@ export class Ahorcado implements OnInit, OnDestroy {
   get finished(): boolean { return this.ahorcadoService.getFinished(); }
   get paused(): boolean { return this.ahorcadoService.getPause(); }
   get victory(): boolean { return this.ahorcadoService.getVictory(); }
+  get displayedWord(): string[] { return this.ahorcadoService.getDisplayedWord(); }
+  get word(): string { return this.ahorcadoService.getWord(); }
 
   guess(letter: string): void {
     if (!this.ahorcadoService.isLetterUsed(letter) && !this.ahorcadoService.getFinished()) {
