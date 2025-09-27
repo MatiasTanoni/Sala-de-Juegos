@@ -14,7 +14,10 @@ import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confi
 })
 export class Ahorcado implements OnInit, OnDestroy {
   showConfirmExit = signal(false);
-
+  rowsLetters: string[][] = [
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'],
+    ['M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  ];
   constructor(public ahorcadoService: AhorcadoService, private router: Router) { }
 
 
@@ -35,7 +38,14 @@ export class Ahorcado implements OnInit, OnDestroy {
   get paused(): boolean { return this.ahorcadoService.getPause(); }
   get victory(): boolean { return this.ahorcadoService.getVictory(); }
 
-  guess(): void {
+  guess(letter: string): void {
+    if (!this.ahorcadoService.isLetterUsed(letter) && !this.ahorcadoService.getFinished()) {
+      this.ahorcadoService.guessLetter(letter);
+    }
+  }
+
+  isLetterUsed(letter: string): boolean {
+    return this.ahorcadoService.isLetterUsed(letter);
   }
 
   resume(): void {
