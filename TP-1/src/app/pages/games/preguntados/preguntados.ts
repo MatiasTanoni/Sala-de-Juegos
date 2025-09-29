@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { PreguntadosService } from '../../../services/preguntados/preguntados-service';
 import { Router } from '@angular/router';
+import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 @Component({
   selector: 'app-preguntados',
-  imports: [],
+  imports: [ConfirmDialogComponent],
   templateUrl: './preguntados.html',
   styleUrl: './preguntados.css'
 })
