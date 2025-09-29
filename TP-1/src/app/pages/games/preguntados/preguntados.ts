@@ -15,7 +15,13 @@ export class Preguntados {
 
   constructor(public preguntadosService: PreguntadosService, private router: Router) { }
 
+  ngOnInit(): void {
+    this.preguntadosService.newGame();
+  }
 
+  ngOnDestroy(): void {
+    this.preguntadosService.stopTimer();
+  }
   get time(): string { return this.preguntadosService.getTime(); }
   get livesArray(): any[] { return Array(this.preguntadosService.getLives()).fill(0); }
   get score(): number { return this.preguntadosService.getScore(); }

@@ -10,6 +10,9 @@ export class PreguntadosService extends Game {
   newGame() {
     this.setLives(5);
     this.setScore(0);
+    this.setTotalSeconds(180);
+    this.setFinished(false);
+    this.setVictory(false);
     this.setPause(false);
     this.startTimer(() => {
       this.endGame(this.victory, this.name);
