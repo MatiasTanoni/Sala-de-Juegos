@@ -9,6 +9,14 @@
             <span class="text-sm sm:text-lg font-bold text-white">{{ time }}</span>
         </div>
 
+        <!-- Vidas -->
+        <div class="flex items-center gap-0.5 sm:gap-1">
+            @for (life of livesArray; track $index) {
+            <span class="material-icons text-red-500 text-base sm:text-xl">favorite</span>
+            }
+        </div>
+
+
     </div>
 
     <div class="flex-1 flex items-center justify-center w-full">
