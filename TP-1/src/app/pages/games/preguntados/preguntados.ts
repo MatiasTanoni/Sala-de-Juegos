@@ -28,6 +28,7 @@ export class Preguntados {
   get paused(): boolean { return this.preguntadosService.getPause(); }
   get finished(): boolean { return this.preguntadosService.getFinished(); }
   get victory(): boolean { return this.preguntadosService.getVictory(); }
+  get loading(): boolean { return this.preguntadosService.getLoading(); }
 
   resume(): void {
     this.preguntadosService.resume();

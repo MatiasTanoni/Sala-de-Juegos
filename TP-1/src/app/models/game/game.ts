@@ -17,6 +17,7 @@ export class Game {
   protected roundVictory: boolean = false;
   protected user: any | boolean = this.authService.getUser();
   protected userId = typeof this.user === 'object' && this.user !== null ? this.user.id : null;
+  protected loading: boolean = false;
 
   startTimer(callback?: () => void) {
     this.totalSeconds = 120;
@@ -64,6 +65,7 @@ export class Game {
   getLives(): number { return this.lives; }
   getRoundVictory(): boolean { return this.roundVictory; }
   getVictory(): boolean { return this.victory; }
+  getLoading(): boolean { return this.loading; } // preguntados
 
   // --- Setters ---
   setPause(isPause: boolean) { this.isPause = isPause; }
@@ -73,6 +75,7 @@ export class Game {
   setVictory(victory: boolean) { this.victory = victory; }
   setTotalSeconds(totalSeconds: number) { this.totalSeconds = totalSeconds; }
   setFinished(finished: boolean) { this.finished.set(finished); }
+  setLoading(loading: boolean) { this.loading = loading; } // preguntados
 
   protected updateTimeString() {
     const minutes = Math.floor(this.totalSeconds / 60);
