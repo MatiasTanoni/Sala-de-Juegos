@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { PreguntadosService } from '../../../services/preguntados/preguntados-service';
 import { Router } from '@angular/router';
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './preguntados.css'
 })
 export class Preguntados {
+  showConfirmExit = signal(false);
 
   constructor(public preguntadosService: PreguntadosService, private router: Router) { }
 
@@ -15,5 +16,31 @@ export class Preguntados {
   get time(): string { return this.preguntadosService.getTime(); }
   get livesArray(): any[] { return Array(this.preguntadosService.getLives()).fill(0); }
   get score(): number { return this.preguntadosService.getScore(); }
+  get paused(): boolean { return this.preguntadosService.getPause(); }
 
+  resume(): void {
+    this.preguntadosService.resume();
+  }
+
+  pause(): void {
+    this.preguntadosService.pause();
+  }
+
+  requestExit(): void {
+    this.showConfirmExit.set(true);
+  }
+
+  exit(): void {
+    this.preguntadosService.stopTimer();
+    this.router.navigate(['/home']);
+  }
+
+  confirmExit(): void {
+    this.showConfirmExit.set(false);
+    this.exit();
+  }
+
+  cancelExit(): void {
+    this.showConfirmExit.set(false);
+  }
 }
