@@ -14,5 +14,6 @@ export class Preguntados {
 
   get time(): string { return this.preguntadosService.getTime(); }
   get livesArray(): any[] { return Array(this.preguntadosService.getLives()).fill(0); }
+  get score(): number { return this.preguntadosService.getScore(); }
 
 }
