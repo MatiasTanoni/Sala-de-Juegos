@@ -17,7 +17,7 @@ export class AhorcadoService extends Game {
 
   private wordList: string[] = [];
   private guessedWords: Set<string> = new Set();
-  private roundPoints = 1000;
+  private roundPoints = 2000;
   constructor() {
     super();
   }

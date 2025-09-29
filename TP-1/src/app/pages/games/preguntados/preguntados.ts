@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { PreguntadosService } from '../../../services/preguntados/preguntados-service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-preguntados',
   imports: [],
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './preguntados.css'
 })
 export class Preguntados {
+
+  constructor(public preguntadosService: PreguntadosService, private router: Router) { }
+
+
+  get time(): string { return this.preguntadosService.getTime(); }
 
 }
