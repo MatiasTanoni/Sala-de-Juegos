@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 import { GameResultComponent } from '../../../components/game-result/game-result';
 import { SuccessMessage } from '../../../components/success-message/success-message';
+import { Spinner } from "../../../components/spinner/spinner";
 
 @Component({
   selector: 'app-preguntados',
-  imports: [ConfirmDialogComponent, GameResultComponent, SuccessMessage],
+  imports: [ConfirmDialogComponent, GameResultComponent, SuccessMessage, Spinner],
   templateUrl: './preguntados.html',
   styleUrl: './preguntados.css'
 })
