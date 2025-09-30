@@ -4,17 +4,18 @@ import { Router } from '@angular/router';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 import { GameResultComponent } from '../../../components/game-result/game-result';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-el-tesoro-escondido',
-  imports: [SuccessMessage, ConfirmDialogComponent, GameResultComponent],
+  imports: [ConfirmDialogComponent, GameResultComponent, CommonModule],
   templateUrl: './el-tesoro-escondido.html',
   styleUrl: './el-tesoro-escondido.css'
 })
 export class ElTesoroEscondido {
   showConfirmExit = signal(false);
 
-  constructor(private elTesoroEscondidoService: ElTesoroEscondidoService, private router: Router) {
+  constructor(public elTesoroEscondidoService: ElTesoroEscondidoService, private router: Router) {
   }
 
   async ngOnInit() {
@@ -57,4 +58,9 @@ export class ElTesoroEscondido {
     this.elTesoroEscondidoService.stopTimer();
     this.router.navigate(['/home']);
   }
+
+  reveal(i: number, j: number): void {
+    this.elTesoroEscondidoService.revealCell(i, j);
+  }
+
 }
