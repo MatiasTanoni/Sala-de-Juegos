@@ -30,4 +30,25 @@
 
     <!-- Controles fijos abajo a la izquierda -->
     <div class="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 flex gap-2 sm:gap-3">
+        @if (paused) {
+        <button (click)="resume()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">play_arrow</span>
+        </button>
+        } @else {
+        <button (click)="pause()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">pause</span>
+        </button>
+        }
+        <button (click)="requestExit()"
+            class="bg-red-600 text-white rounded-full p-2 sm:p-3 flex items-center justify-center hover:bg-red-700 transition shadow-md">
+            <span class="material-icons text-base sm:text-lg">logout</span>
+        </button>
     </div>
+    @if (showConfirmExit()) {
+    <app-confirm-dialog title="¿Deseas salir del juego?" message="Perderás el progreso actual."
+        (confirm)="confirmExit()" (cancel)="cancelExit()">
+    </app-confirm-dialog>
+    }
+</div>
