@@ -3,10 +3,11 @@ import { PreguntadosService } from '../../../services/preguntados/preguntados-se
 import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
 import { GameResultComponent } from '../../../components/game-result/game-result';
+import { SuccessMessage } from '../../../components/success-message/success-message';
 
 @Component({
   selector: 'app-preguntados',
-  imports: [ConfirmDialogComponent, GameResultComponent],
+  imports: [ConfirmDialogComponent, GameResultComponent, SuccessMessage],
   templateUrl: './preguntados.html',
   styleUrl: './preguntados.css'
 })
@@ -29,7 +30,9 @@ export class Preguntados {
   get finished(): boolean { return this.preguntadosService.getFinished(); }
   get victory(): boolean { return this.preguntadosService.getVictory(); }
   get loading(): boolean { return this.preguntadosService.getLoading(); }
-
+  get roundVictory(): boolean { return this.preguntadosService.isRoundWon(); }
+  get currentQuestion(): any { return this.preguntadosService.getCurrentQuestion(); }
+  get currentOptions(): string[] { return this.preguntadosService.getCurrentOptions(); }
   resume(): void {
     this.preguntadosService.resume();
   }

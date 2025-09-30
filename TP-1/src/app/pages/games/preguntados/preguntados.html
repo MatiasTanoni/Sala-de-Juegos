@@ -1,8 +1,9 @@
-<div
-    class="bg-gray-900 rounded-lg shadow-lg flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-4 border-2">
+<div class="bg-gray-900 rounded-lg shadow-lg flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw]
+    sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-4 border-2">
 
     <!-- Header superior -->
     <div class="flex w-full items-center justify-between p-2 sm:p-4 border-b border-red-700">
+
         <!-- Timer -->
         <div class="flex items-center gap-1 sm:gap-2 bg-red-600 px-2 sm:px-3 py-1 rounded-full shadow-md">
             <span class="material-icons text-blue-400 text-base sm:text-lg">timer</span>
@@ -24,7 +25,36 @@
         </div>
     </div>
 
+    <!-- Contenido central -->
     <div class="flex-1 flex items-center justify-center w-full">
+        @if (!loading) {
+        <!-- Resultado ronda -->
+        @if (roundVictory) {
+        <app-success-message [title]="'¡Respuesta correcta!'" [message]="'Muy bien, acertaste la pregunta.'">
+        </app-success-message>
+        } @else {
+        <!-- Pregunta actual -->
+        <div class="flex-1 flex flex-col justify-center items-center px-6 text-center gap-8">
+            @if (currentQuestion) {
+            <h2 class="text-white text-2xl font-light tracking-wide leading-snug">
+                {{ currentQuestion.question }}
+            </h2>
+
+            <!-- Opciones -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
+                @for (option of currentOptions; track $index) {
+                <button (click)="preguntadosService.checkAnswer(option)"
+                    class="bg-gray-800 text-white rounded-lg px-4 py-3 text-base sm:text-lg font-medium hover:bg-red-700 transition shadow-md">
+                    {{ option }}
+                </button>
+                }
+            </div>
+            }
+        </div>
+        }
+        } @else {
+        <span class="text-white">Cargando preguntas...</span>
+        }
     </div>
 
     <!-- Botones pause/exit flotantes -->
@@ -52,11 +82,11 @@
         (confirm)="confirmExit()" (cancel)="cancelExit()">
     </app-confirm-dialog>
     }
+
     <!-- Resultado del juego -->
     @if (finished) {
     <app-game-result [isVictory]="victory" [score]="score"
         class="absolute inset-0 z-20 bg-black bg-opacity-80 flex items-center justify-center rounded-lg">
     </app-game-result>
     }
-
 </div>
