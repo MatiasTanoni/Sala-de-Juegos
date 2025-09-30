@@ -3,10 +3,11 @@ import { ElTesoroEscondidoService } from '../../../services/el-tesoro-escondido/
 import { Router } from '@angular/router';
 import { SuccessMessage } from '../../../components/success-message/success-message';
 import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confirm-dialog';
+import { GameResultComponent } from '../../../components/game-result/game-result';
 
 @Component({
   selector: 'app-el-tesoro-escondido',
-  imports: [SuccessMessage, ConfirmDialogComponent],
+  imports: [SuccessMessage, ConfirmDialogComponent, GameResultComponent],
   templateUrl: './el-tesoro-escondido.html',
   styleUrl: './el-tesoro-escondido.css'
 })
@@ -20,7 +21,8 @@ export class ElTesoroEscondido {
   get time(): string { return this.elTesoroEscondidoService.getTime(); }
   get score(): number { return this.elTesoroEscondidoService.getScore(); }
   get paused(): boolean { return this.elTesoroEscondidoService.getPause(); }
-
+  get finished(): boolean { return this.elTesoroEscondidoService.getFinished(); }
+  get victory(): boolean { return this.elTesoroEscondidoService.getVictory(); }
 
   pause(): void {
     this.elTesoroEscondidoService.pause();
