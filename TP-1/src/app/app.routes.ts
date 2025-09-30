@@ -50,6 +50,6 @@ export const routes: Routes = [
     // Ruta comodín (si no encuentra ninguna ruta)
     {
         path: '**',
-        loadComponent: () => import('./pages/auth/auth').then(m => m.Auth)
+        loadComponent: () => import('./pages/home/home').then(m => m.Home)
     }
 ];
