@@ -17,6 +17,14 @@ export class ElTesoroEscondido {
   constructor(private elTesoroEscondidoService: ElTesoroEscondidoService, private router: Router) {
   }
 
+  async ngOnInit() {
+    this.elTesoroEscondidoService.newGame();
+  }
+
+  ngOnDestroy(): void {
+    this.elTesoroEscondidoService.stopTimer();
+  }
+
   get livesArray(): any[] { return Array(this.elTesoroEscondidoService.getLives()).fill(0); }
   get time(): string { return this.elTesoroEscondidoService.getTime(); }
   get score(): number { return this.elTesoroEscondidoService.getScore(); }
