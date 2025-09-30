@@ -36,11 +36,18 @@ export class PreguntadosService extends Game {
         this.http.get<any[]>('https://the-trivia-api.com/v2/questions')
       );
 
-      this.questions = data.map((item: any) => ({
-        question: item.question.text,
-        options: this.shuffleArray([...item.incorrectAnswers, item.correctAnswer]),
-        correctAnswer: item.correctAnswer
-      }));
+      this.questions = data.map((item: any) => {
+        // Elegir una incorrecta aleatoria
+        const randomIncorrect = item.incorrectAnswers[
+          Math.floor(Math.random() * item.incorrectAnswers.length)
+        ];
+
+        return {
+          question: item.question.text,
+          options: this.shuffleArray([randomIncorrect, item.correctAnswer]), // solo dos opciones
+          correctAnswer: item.correctAnswer
+        };
+      });
 
       this.setLoading(false);
     } catch (error) {
@@ -48,6 +55,7 @@ export class PreguntadosService extends Game {
       this.setLoading(false);
     }
   }
+
 
   checkAnswer(option: string): void {
     const current = this.getCurrentQuestion();
