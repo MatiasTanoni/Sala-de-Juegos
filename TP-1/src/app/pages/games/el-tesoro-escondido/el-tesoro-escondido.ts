@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-el-tesoro-escondido',
-  imports: [ConfirmDialogComponent, GameResultComponent, CommonModule],
+  imports: [ConfirmDialogComponent, GameResultComponent, CommonModule, SuccessMessage],
   templateUrl: './el-tesoro-escondido.html',
   styleUrl: './el-tesoro-escondido.css'
 })

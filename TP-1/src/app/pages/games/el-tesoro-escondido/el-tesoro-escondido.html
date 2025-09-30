@@ -30,32 +30,31 @@
     <div class="grid grid-cols-5 gap-2 p-4">
         @for (row of elTesoroEscondidoService.getBoard(); let i = $index; track i) {
         @for (cell of row; let j = $index; track j) {
-        <button (click)="reveal(i,j)" class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center text-lg sm:text-2xl
-               bg-gray-700 text-white hover:bg-gray-600 transition" [ngClass]="{
-          'bg-green-700': cell.revealed && cell.type === 'tesoro',
-          'bg-yellow-600': cell.revealed && cell.type === 'oro',
-          'bg-red-600': cell.revealed && cell.type === 'trampa',
-          'bg-gray-800': cell.revealed && cell.type === 'vacio'
+
+        <button (click)="reveal(i,j)" [disabled]="victory"
+            class="w-12 h-12 sm:w-16 sm:h-16 rounded-lg flex items-center justify-center 
+               text-lg sm:text-2xl bg-gray-700 text-white hover:bg-gray-600 transition disabled:opacity-50 disabled:cursor-not-allowed" [ngClass]="{
+            'bg-green-700': cell.revealed && cell.type === 'tesoro',
+            'bg-yellow-600': cell.revealed && cell.type === 'oro',
+            'bg-red-600': cell.revealed && cell.type === 'trampa',
+            'bg-gray-800': cell.revealed && cell.type === 'vacio'
         }">
 
             @if (cell.revealed) {
-            <span class="material-icons text-yellow-400 text-xl" *ngIf="cell.type === 'tesoro'">
-                emoji_events
-            </span>
-            <span class="material-icons text-yellow-400 text-xl" *ngIf="cell.type === 'oro'">
-                star
-            </span>
-            <span class="material-icons text-red-500 text-xl" *ngIf="cell.type === 'trampa'">
-                dangerous
-            </span>
-            <span class="material-icons text-gray-400 text-xl" *ngIf="cell.type === 'vacio'">
-                crop_square
-            </span>
+            <span class="text-xl" *ngIf="cell.type === 'tesoro'">🏆</span>
+            <span class="text-xl" *ngIf="cell.type === 'oro'">💰</span>
+            <span class="text-xl" *ngIf="cell.type === 'trampa'">☠️</span>
+            <span class="text-xl" *ngIf="cell.type === 'vacio'">◻️</span>
             }
         </button>
         }
         }
     </div>
+
+    @if (victory) {
+    <app-success-message [title]="'¡Felicidades!'" [message]="'Encontraste el tesoro.'">
+    </app-success-message>
+    }
 
 
     <!-- Controles fijos abajo a la izquierda -->
@@ -86,4 +85,3 @@
         class="absolute inset-0 z-20 bg-black bg-opacity-80 flex items-center justify-center rounded-lg">
     </app-game-result>
     }
-</div>

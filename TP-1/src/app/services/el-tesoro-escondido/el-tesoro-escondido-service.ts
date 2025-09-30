@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Game } from '../../models/game/game';
+import { SuccessMessage } from '../../components/success-message/success-message';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class ElTesoroEscondidoService extends Game {
     );
     this.totalSeconds = 120;
     this.setScore(0);
-    this.setLives(10);
+    this.setLives(3);
     this.setVictory(false);
     this.setFinished(false);
   }
@@ -74,8 +75,10 @@ export class ElTesoroEscondidoService extends Game {
 
     switch (cell.type) {
       case 'tesoro':
-        this.setVictory(true);
-        this.endGame(true, this.name);
+        this.setVictory(true)
+        setTimeout(() => {
+          this.endGame(true, this.name);
+        }, 3000);
         break;
 
       case 'oro':
@@ -95,7 +98,7 @@ export class ElTesoroEscondidoService extends Game {
     }
   }
   wonGame(): void {
-    if (this.getScore() >= 10000) {
+    if (this.getScore() >= 20000) {
       this.setVictory(true);
     }
   }
