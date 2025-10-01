@@ -1,31 +1,30 @@
 <div
-    class="bg-gray-900 rounded-lg shadow-lg flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-4 border-2">
+    class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-6 border border-gray-700">
 
     @if (loading) {
     <app-spinner></app-spinner>
     }
 
     @if (!loading && results.length > 0) {
-    <div>
-        <table class="table-auto w-full border">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="border px-4 py-2">Usuario</th>
-                    <th class="border px-4 py-2">Pregunta</th>
-                    <th class="border px-4 py-2">Respuesta del usuario</th>
-                    <th class="border px-4 py-2">Respuesta correcta</th>
-                    <th class="border px-4 py-2">Resultado</th>
+    <div class="overflow-x-auto rounded-lg shadow-inner">
+        <table class="min-w-full divide-y divide-gray-700 border border-gray-600 rounded-lg overflow-hidden text-left">
+            <thead class="bg-gray-700">
+                <tr class="text-red-600 uppercase tracking-wider">
+                    <th class="px-6 py-3">Nombre</th>
+                    <th class="px-6 py-3">Apellido</th>
+                    <th class="px-6 py-3">Puntuación</th>
+                    <th class="px-6 py-3">Victoria</th>
+                    <th class="px-6 py-3 ">Juego</th>
                 </tr>
             </thead>
-            <tbody>
-                @for (item of results ; track $index) {
-                <tr>
-                    <td class="border px-4 py-2">{{ item.firstname }}</td>
-                    <td class="border px-4 py-2">{{ item.lastname }}</td>
-                    <td class="border px-4 py-2">{{ item.score }}</td>
-                    <td class="border px-4 py-2">{{ item.victory }}</td>
-                    <td class="border px-4 py-2">
-                    </td>
+            <tbody class="bg-gray-800 divide-y divide-gray-700 text-gray-100">
+                @for (item of results; track $index) {
+                <tr class="hover:bg-gray-700 transition-colors duration-200">
+                    <td class="px-6 py-4">{{ item.firstname }}</td>
+                    <td class="px-6 py-4">{{ item.lastname }}</td>
+                    <td class="px-6 py-4">{{ item.score }}</td>
+                    <td class="px-6 py-4">{{ item.victory }}</td>
+                    <td class="px-6 py-4"> {{ item.id_game }}</td>
                 </tr>
                 }
             </tbody>
