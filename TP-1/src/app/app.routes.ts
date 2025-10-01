@@ -19,6 +19,10 @@ export const routes: Routes = [
         path: 'about',
         loadComponent: () => import('./pages/about/about').then(m => m.About)
     },
+    {
+        path: 'results',
+        loadComponent: () => import('./pages/results/results').then(m => m.Results)
+    },
 
     // Rutas protegidas por el guard
     {
