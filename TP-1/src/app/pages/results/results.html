@@ -1,5 +1,5 @@
 <div
-    class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-6 border border-gray-700">
+    class="bg-gradient-to-br bg-gray-900 rounded-2xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-6 border-2 border-gray-800">
 
     @if (!loading && results.length > 0) {
     <div class="overflow-x-auto rounded-lg shadow-inner">
@@ -20,7 +20,7 @@
                     <td class="px-6 py-4">{{ item.lastname }}</td>
                     <td class="px-6 py-4">{{ item.score }}</td>
                     <td class="px-6 py-4">{{ item.victory }}</td>
-                    <td class="px-6 py-4"> {{ item.id_game }}</td>
+                    <td class="px-6 py-4"> {{ item.game.name }}</td>
                 </tr>
                 }
             </tbody>

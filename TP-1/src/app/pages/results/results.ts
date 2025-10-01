@@ -21,7 +21,7 @@ export class Results implements OnInit {
     this.loading = true;
 
     const data = await this.supabaseService.getResults();
-
+    console.log(data);
     this.results = data.sort((a, b) => {
       if (b.victory === a.victory) {
         return b.score - a.score;

@@ -49,17 +49,39 @@ export class Databases {
 
   async getResults() {
     try {
-      const { data, error } = await this.supabase.from('results').select('*');
-      if (error) {
-        console.log("holaa")
-        console.error('Error fetching results:', error);
+      // Traemos todos los resultados
+      const { data: results, error: resultsError } = await this.supabase
+        .from('results')
+        .select('*');
+
+      if (resultsError) {
+        console.error('Error fetching results:', resultsError);
         return [];
       }
-      return data;
+
+      // Traemos todos los juegos
+      const { data: games, error: gamesError } = await this.supabase
+        .from('games')
+        .select('*');
+
+      if (gamesError) {
+        console.error('Error fetching games:', gamesError);
+        return [];
+      }
+
+      // Unimos resultados con juegos manualmente
+      const resultsWithGames = results.map(result => {
+        const game = games.find(g => g.id === result.id_game); // match id_game con id de games
+        return {
+          ...result,
+          game: game || null // agregamos info del juego
+        };
+      });
+
+      return resultsWithGames;
 
     } catch (error) {
-      console.log("holaa")
-      console.error('Error fetching results:', error);
+      console.error('Error fetching data:', error);
       return [];
     }
   }
