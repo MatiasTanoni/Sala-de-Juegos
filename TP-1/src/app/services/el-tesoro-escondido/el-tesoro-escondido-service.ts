@@ -48,20 +48,44 @@ export class ElTesoroEscondidoService extends Game {
     const ty = Math.floor(Math.random() * this.boardSize);
     this.board[tx][ty].type = 'tesoro';
 
-    // Poner oros y trampas
+    // Crear listas de posiciones disponibles (sin el tesoro)
+    const positions: { x: number, y: number }[] = [];
     for (let i = 0; i < this.boardSize; i++) {
       for (let j = 0; j < this.boardSize; j++) {
-        if (i === tx && j === ty) continue; // ya está el tesoro
-
-        const rand = Math.random();
-        if (rand < 0.2) {
-          this.board[i][j].type = 'oro';
-        } else if (rand < 0.35) {
-          this.board[i][j].type = 'trampa';
-        }
+        if (i === tx && j === ty) continue;
+        positions.push({ x: i, y: j });
       }
     }
+
+    // Función para elegir n posiciones aleatorias sin repetición
+    const pickRandomPositions = (arr: { x: number, y: number }[], n: number) => {
+      const copy = [...arr];
+      const picked: { x: number, y: number }[] = [];
+      for (let i = 0; i < n; i++) {
+        const idx = Math.floor(Math.random() * copy.length);
+        picked.push(copy[idx]);
+        copy.splice(idx, 1); // eliminar para no repetir
+      }
+      return picked;
+    }
+
+    const numOro = 5;     // cantidad fija de oro
+    const numTrampas = 5; // cantidad fija de trampas
+
+    // Poner oro
+    const oroPositions = pickRandomPositions(positions, numOro);
+    oroPositions.forEach(p => this.board[p.x][p.y].type = 'oro');
+
+    // Quitar posiciones usadas por oro antes de poner trampas
+    const remainingPositions = positions.filter(p =>
+      !oroPositions.some(o => o.x === p.x && o.y === p.y)
+    );
+
+    // Poner trampas
+    const trampaPositions = pickRandomPositions(remainingPositions, numTrampas);
+    trampaPositions.forEach(p => this.board[p.x][p.y].type = 'trampa');
   }
+
 
   getBoard() {
     return this.board;
