@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Databases } from '../../services/databases/databases';
 import { Spinner } from '../../components/spinner/spinner';
 
@@ -12,12 +12,26 @@ export class Results implements OnInit {
   results: any[] = [];
   loading = false;
 
-  constructor(private supabaseService: Databases) { }
+  constructor(
+    private supabaseService: Databases,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   async ngOnInit() {
     this.loading = true;
-    this.results = await this.supabaseService.getResults();
-    console.log(this.results)
+
+    const data = await this.supabaseService.getResults();
+
+    this.results = data.sort((a, b) => {
+      if (b.victory === a.victory) {
+        return b.score - a.score;
+      }
+      return (b.victory ? 1 : 0) - (a.victory ? 1 : 0);
+    });
+
     this.loading = false;
+
+    // Forzamos Angular a re-renderizar limpio
+    this.cdr.detectChanges();
   }
 }
