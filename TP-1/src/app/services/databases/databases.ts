@@ -46,4 +46,21 @@ export class Databases {
   get client(): SupabaseClient {
     return this.supabase
   }
+
+  async getResults() {
+    try {
+      const { data, error } = await this.supabase.from('results').select('*');
+      if (error) {
+        console.log("holaa")
+        console.error('Error fetching results:', error);
+        return [];
+      }
+      return data;
+
+    } catch (error) {
+      console.log("holaa")
+      console.error('Error fetching results:', error);
+      return [];
+    }
+  }
 }

@@ -1,1 +1,35 @@
-<p>results works!</p>
+<div
+    class="bg-gray-900 rounded-lg shadow-lg flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-4 border-2">
+
+    @if (loading) {
+    <app-spinner></app-spinner>
+    }
+
+    @if (!loading && results.length > 0) {
+    <div>
+        <table class="table-auto w-full border">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Usuario</th>
+                    <th class="border px-4 py-2">Pregunta</th>
+                    <th class="border px-4 py-2">Respuesta del usuario</th>
+                    <th class="border px-4 py-2">Respuesta correcta</th>
+                    <th class="border px-4 py-2">Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of results ; track $index) {
+                <tr>
+                    <td class="border px-4 py-2">{{ item.firstname }}</td>
+                    <td class="border px-4 py-2">{{ item.lastname }}</td>
+                    <td class="border px-4 py-2">{{ item.score }}</td>
+                    <td class="border px-4 py-2">{{ item.victory }}</td>
+                    <td class="border px-4 py-2">
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</div>
