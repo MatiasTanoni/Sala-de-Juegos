@@ -53,7 +53,6 @@ export class Databases {
       const { data: results, error: resultsError } = await this.supabase
         .from('results')
         .select('*');
-
       if (resultsError) {
         console.error('Error fetching results:', resultsError);
         return [];

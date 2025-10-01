@@ -11,7 +11,6 @@ import { Spinner } from '../../components/spinner/spinner';
 export class Results implements OnInit {
   results: any[] = [];
   loading = false;
-
   constructor(
     private supabaseService: Databases,
     private cdr: ChangeDetectorRef
@@ -21,7 +20,6 @@ export class Results implements OnInit {
     this.loading = true;
 
     const data = await this.supabaseService.getResults();
-    console.log(data);
     this.results = data.sort((a, b) => {
       if (b.victory === a.victory) {
         return b.score - a.score;

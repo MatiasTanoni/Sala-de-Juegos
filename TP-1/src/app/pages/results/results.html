@@ -19,8 +19,10 @@
                     <td class="px-6 py-4">{{ item.firstname }}</td>
                     <td class="px-6 py-4">{{ item.lastname }}</td>
                     <td class="px-6 py-4">{{ item.score }}</td>
-                    <td class="px-6 py-4">{{ item.victory }}</td>
-                    <td class="px-6 py-4"> {{ item.game.name }}</td>
+                    <td class="px-6 py-4">
+                        {{ item.victory ? '✅' : '❌' }}
+                    </td>
+                    <td class="px-6 py-4"> {{ item.game.name}}</td>
                 </tr>
                 }
             </tbody>
