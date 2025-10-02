@@ -28,7 +28,6 @@ export class Databases {
   }
 
   async getUserById(userId: string | null): Promise<{ name: string, apellido: string } | null> {
-    console.log(userId)
     const { data, error } = await this.supabase
       .from('users')
       .select('name, apellido')

@@ -65,7 +65,6 @@ export class Register implements OnInit {
 
     const { name, lastName, age, email, password } = this.formulario.value;
 
-    console.log("Valores del formulario:", this.formulario.value);
 
     try {
       const { success, message } = await this.auth.register(
@@ -76,7 +75,6 @@ export class Register implements OnInit {
         age
       );
       if (success) {
-        console.log('Registro exitoso:', message);
       } else {
         console.error('Error en el registro:', message);
         if (message === 'User already registered') {

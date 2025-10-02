@@ -83,20 +83,16 @@ export class Auth {
   }
 
   async login(email: string, password: string): Promise<{ success: boolean; message: string }> {
-    console.log("email: " + email + ", password: " + password);
     const { data, error } = await this.supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });
 
     if (error) {
-      console.log("ERROR CONSOLA: " + error.message);
       return { success: false, message: 'Credenciales inválidas.' };
     }
 
     const authUser = data.user;
-    console.log("DATA CONSOLA: " + authUser.email);
-    console.log("DATA CONSOLA ID: " + authUser.id);
 
     const { data: profile, error: profileError } = await this.supabase
       .from('users')
@@ -119,7 +115,6 @@ export class Auth {
     localStorage.setItem('name', name ?? '');
     localStorage.setItem('apellido', apellido ?? '');
 
-    console.log("user:", JSON.stringify(this.user(), null, 2));
 
     this.router.navigate(['/home'], { replaceUrl: true });
     return { success: true, message: 'Inicio de sesión exitoso.' };

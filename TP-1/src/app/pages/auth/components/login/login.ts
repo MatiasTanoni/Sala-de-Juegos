@@ -59,7 +59,6 @@ export class Login {
 
       if (success) {
         this.loginError = null;
-        console.log("Login exitoso:", message);
       } else {
         this.loginError = message;
       }
