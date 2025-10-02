@@ -6,6 +6,7 @@ import { ConfirmDialogComponent } from '../../../components/confirm-dialog/confi
 import { GameResultComponent } from '../../../components/game-result/game-result';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Auth } from '../../../services/auth/auth';
 @Component({
   selector: 'app-el-tesoro-escondido',
   imports: [ConfirmDialogComponent, GameResultComponent, CommonModule, SuccessMessage],
@@ -15,10 +16,11 @@ import { CommonModule } from '@angular/common';
 export class ElTesoroEscondido {
   showConfirmExit = signal(false);
 
-  constructor(public elTesoroEscondidoService: ElTesoroEscondidoService, private router: Router) {
+  constructor(public elTesoroEscondidoService: ElTesoroEscondidoService, private router: Router, private auth: Auth) {
   }
 
   async ngOnInit() {
+    await this.auth.checkSession();
     this.elTesoroEscondidoService.newGame();
   }
 

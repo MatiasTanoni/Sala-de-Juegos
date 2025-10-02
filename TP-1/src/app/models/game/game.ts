@@ -125,7 +125,7 @@ export class Game {
     const bonusFromTime = this.totalSeconds * 100;
     this.score += bonusFromTime;
   }
- 
+
   async endGame(won: boolean, gameName: string): Promise<void> {
     this.stopTimer();
     this.finished.set(true);
@@ -138,6 +138,7 @@ export class Game {
     try {
       const idGame = await this.supabase.getGameIdByName(gameName);
       const user = await this.supabase.getUserById(this.userId);
+      console.log("user: " + this.userId);
 
       if (!user) {
         console.error('No se encontró el usuario con ese id');
@@ -150,12 +151,12 @@ export class Game {
       }
 
       const { name, apellido } = user;
-
+      console.log("Nombre: " + name + ", apellido: " + apellido);
       await this.saveResult({
         id_user: this.userId,
         id_game: idGame,
-        firstname: name,
-        lastname: apellido,
+        firstname: localStorage.getItem('name'),
+        lastname: localStorage.getItem('apellido'),
         score: this.score,
         victory: this.victory
       });

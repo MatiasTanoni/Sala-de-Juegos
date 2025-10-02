@@ -72,6 +72,8 @@ export class Auth {
         return { success: false, message: error.message };
       }
 
+      localStorage.removeItem('name');
+      localStorage.removeItem('apellido');
       this.router.navigate(['/auth'], { replaceUrl: true });
 
       return { success: true, message: 'Sesión cerrada correctamente.' };
@@ -112,8 +114,16 @@ export class Auth {
       ...profile
     });
 
+    // Guardar en localStorage
+    const { name, apellido } = this.user();
+    localStorage.setItem('name', name ?? '');
+    localStorage.setItem('apellido', apellido ?? '');
+
+    console.log("user:", JSON.stringify(this.user(), null, 2));
+
     this.router.navigate(['/home'], { replaceUrl: true });
     return { success: true, message: 'Inicio de sesión exitoso.' };
+
   }
 
 
