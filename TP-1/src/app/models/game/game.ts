@@ -125,7 +125,7 @@ export class Game {
     const bonusFromTime = this.totalSeconds * 100;
     this.score += bonusFromTime;
   }
-
+ 
   async endGame(won: boolean, gameName: string): Promise<void> {
     this.stopTimer();
     this.finished.set(true);
