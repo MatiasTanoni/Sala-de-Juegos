@@ -72,7 +72,7 @@ export class Auth {
         return { success: false, message: error.message };
       }
 
-      this.router.navigate(['/auth'], { replaceUrl: true });
+      this.router.navigate(['/home'], { replaceUrl: true });
 
       return { success: true, message: 'Sesión cerrada correctamente.' };
     } catch (error) {
