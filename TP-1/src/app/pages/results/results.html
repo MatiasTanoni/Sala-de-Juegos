@@ -43,20 +43,20 @@
 
         <!-- Paginación -->
         <div class="flex justify-center items-center mt-4 gap-2">
-            <button class="px-3 py-1 bg-gray-700 rounded-lg text-gray-200 hover:bg-gray-600"
+            <button class="px-3 py-1 bg-red-700 rounded-lg text-gray-200 hover:bg-gray-600"
                 (click)="changePage(selectedGame, currentPage[selectedGame] - 1)"
                 [disabled]="currentPage[selectedGame] === 1">
-                ⬅️ Anterior
+                ⬅️
             </button>
 
             <span class="text-gray-300">
                 Página {{ currentPage[selectedGame] }} / {{ getTotalPages(selectedGame) }}
             </span>
 
-            <button class="px-3 py-1 bg-gray-700 rounded-lg text-gray-200 hover:bg-gray-600"
+            <button class="px-3 py-1 bg-red-700 rounded-lg text-gray-200 hover:bg-gray-600"
                 (click)="changePage(selectedGame, currentPage[selectedGame] + 1)"
                 [disabled]="currentPage[selectedGame] === getTotalPages(selectedGame)">
-                Siguiente ➡️
+                ➡️
             </button>
         </div>
     </div>
