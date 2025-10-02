@@ -35,32 +35,23 @@ La aplicación es **responsive**, con menú hamburguesa para móviles, confirmac
 ---
 
 ## 💻 Instalación
+```bash
+Sigue estos pasos para levantar la aplicación localmente:
 
-1. Clonar el repositorio:
-
+1. **Clonar el repositorio:**
 git clone https://github.com/tu-usuario/sala-de-juegos.git
 cd /TP-1
 
-Instalar dependencias:npm install
-Clonar el repositorio:
+2. **Instalar dependencias:**
+npm install
 
-Crear proyecto en Supabase
-Copiar URL y ANON_KEY en environment.ts
+3. **Configurar Supabase:**
 
-Ejecutar la aplicación: ng serve
+Crea un proyecto en Supabase
+Copia tu URL y ANON_KEY en src/environments/environment.ts
 
-Abrir en el navegador: http://localhost:4200
+4. **Ejecutar la aplicación:**
+ng serve
 
----
-
-## 📁 Estructura del proyectO
-
-src/
-├─ app/
-│  ├─ components/      # Componentes reutilizables (navbar, confirm dialog, spinner)
-│  ├─ pages/           # Páginas principales (home, about, games, results, chat)
-│  ├─ services/        # Servicios (auth, databases, surveys)
-│  ├─ app-routing.module.ts
-│  └─ app.module.ts
-├─ assets/             # Imágenes y recursos
-├─ environments/       # Variables de entorno
+5. **Abrir en el navegador:**
+http://localhost:4200
