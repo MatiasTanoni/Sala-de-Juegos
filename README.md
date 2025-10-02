@@ -38,7 +38,6 @@ La aplicación es **responsive**, con menú hamburguesa para móviles, confirmac
 
 1. Clonar el repositorio:
 
-```bash
 git clone https://github.com/tu-usuario/sala-de-juegos.git
 cd /TP-1
 
@@ -53,6 +52,7 @@ Ejecutar la aplicación: ng serve
 Abrir en el navegador: http://localhost:4200
 
 ---
+
 ## 📁 Estructura del proyectO
 
 src/
