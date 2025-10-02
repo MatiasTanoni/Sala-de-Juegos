@@ -27,7 +27,7 @@ export class MayorOMenor implements OnInit, OnDestroy {
   async ngOnInit() {
     await this.auth.checkSession();
     if (!this.user()) {
-      this.router.navigate(['/auth'], { replaceUrl: true });
+      this.router.navigate(['/home'], { replaceUrl: true });
       return;
     }
     this.mayorMenorService.newGame();
