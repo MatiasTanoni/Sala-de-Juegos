@@ -1,8 +1,23 @@
 <div
-    class="bg-gradient-to-br bg-gray-900 rounded-2xl shadow-2xl flex flex-col h-[85vh] sm:h-[80vh] md:h-[75vh] lg:h-[70vh] w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-6 border-2 border-gray-800">
+    class="bg-gradient-to-br bg-gray-900 rounded-2xl shadow-2xl flex flex-col w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] relative p-6 border-2 border-gray-800">
 
     @if (!loading && results.length > 0) {
-    <div class="overflow-x-auto rounded-lg shadow-inner">
+
+    <!-- Selector de juego -->
+    <div class="flex justify-center mb-6">
+        <select class="bg-gray-800 text-gray-200 px-4 py-2 rounded-lg border border-gray-600"
+            [(ngModel)]="selectedGame">
+            @for (game of uniqueGames; track $index) {
+            <option [value]="game">{{ game }}</option>
+            }
+        </select>
+    </div>
+
+    <!-- Tabla del juego actual -->
+    @if (selectedGame) {
+    <div class="overflow-x-auto rounded-lg shadow-inner mb-8">
+        <h2 class="text-xl font-bold text-gray-200 mb-4">{{ selectedGame }}</h2>
+
         <table class="min-w-full divide-y divide-gray-700 border border-gray-600 rounded-lg overflow-hidden text-left">
             <thead class="bg-gray-700">
                 <tr class="text-red-600 uppercase tracking-wider">
@@ -10,11 +25,10 @@
                     <th class="px-6 py-3">Apellido</th>
                     <th class="px-6 py-3">Puntuación</th>
                     <th class="px-6 py-3">Victoria</th>
-                    <th class="px-6 py-3 ">Juego</th>
                 </tr>
             </thead>
             <tbody class="bg-gray-800 divide-y divide-gray-700 text-gray-100">
-                @for (item of results; track $index) {
+                @for (item of getPaginatedResults(selectedGame); track item.id) {
                 <tr class="hover:bg-gray-700 transition-colors duration-200">
                     <td class="px-6 py-4">{{ item.firstname }}</td>
                     <td class="px-6 py-4">{{ item.lastname }}</td>
@@ -22,12 +36,31 @@
                     <td class="px-6 py-4">
                         {{ item.victory ? '✅' : '❌' }}
                     </td>
-                    <td class="px-6 py-4"> {{ item.game.name}}</td>
                 </tr>
                 }
             </tbody>
         </table>
+
+        <!-- Paginación -->
+        <div class="flex justify-center items-center mt-4 gap-2">
+            <button class="px-3 py-1 bg-gray-700 rounded-lg text-gray-200 hover:bg-gray-600"
+                (click)="changePage(selectedGame, currentPage[selectedGame] - 1)"
+                [disabled]="currentPage[selectedGame] === 1">
+                ⬅️ Anterior
+            </button>
+
+            <span class="text-gray-300">
+                Página {{ currentPage[selectedGame] }} / {{ getTotalPages(selectedGame) }}
+            </span>
+
+            <button class="px-3 py-1 bg-gray-700 rounded-lg text-gray-200 hover:bg-gray-600"
+                (click)="changePage(selectedGame, currentPage[selectedGame] + 1)"
+                [disabled]="currentPage[selectedGame] === getTotalPages(selectedGame)">
+                Siguiente ➡️
+            </button>
+        </div>
     </div>
+    }
     }
     @else {
     <app-spinner></app-spinner>
