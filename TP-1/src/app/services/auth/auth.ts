@@ -88,7 +88,7 @@ export class Auth {
     });
 
     if (error) {
-      console.log("ERROR CONSOLA: " + error);
+      console.log("ERROR CONSOLA: " + error.message);
       return { success: false, message: 'Credenciales inválidas.' };
     }
 

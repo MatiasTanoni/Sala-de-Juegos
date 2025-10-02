@@ -17,6 +17,9 @@ export class PreguntadosService extends Game {
   }
 
   async newGame() {
+
+    this.questions = [];
+    this.currentQuestionIndex = 0;
     await this.loadQuestions();
     this.setLives(5);
     this.setScore(0);
