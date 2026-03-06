@@ -14,6 +14,31 @@ La aplicación es **responsive**, con menú hamburguesa para móviles, confirmac
 
 ---
 
+## 📸 Vistas principales de la aplicación
+
+*📰 Home*
+
+![Inicio](TP-1/public/inicioSalaDeJuegos.png)
+
+
+*👤 Quien Soy*
+
+![](TP-1/public/quienSoy.png)
+
+*📊 Resultados*
+
+![Resultados](TP-1/public/resultados.png)
+
+*Login*
+
+![Login](TP-1/public/login.png)
+
+*Registro*
+
+![Registro](TP-1/public/registro.png)
+
+---
+
 ## 🚀 Características principales
 
 - Juegos incluidos: **Ahorcado**, **Mayor o Menor**, **Preguntados**, **El Tesoro Escondido**  
