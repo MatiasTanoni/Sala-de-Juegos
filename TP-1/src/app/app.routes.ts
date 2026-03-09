@@ -28,27 +28,27 @@ export const routes: Routes = [
     {
         path: 'ahorcado',
         loadComponent: () => import('./pages/games/ahorcado/ahorcado').then(m => m.Ahorcado),
-        canActivate: [guardsGuard]
+        // canActivate: [guardsGuard]
     },
     {
         path: 'mayor-menor',
         loadComponent: () => import('./pages/games/mayor-o-menor/mayor-o-menor').then(m => m.MayorOMenor),
-        canActivate: [guardsGuard]
+        // canActivate: [guardsGuard]
     },
     {
         path: 'preguntados',
         loadComponent: () => import('./pages/games/preguntados/preguntados').then(m => m.Preguntados),
-        canActivate: [guardsGuard]
+        // canActivate: [guardsGuard]
     },
     {
         path: 'el-tesoro-escondido',
         loadComponent: () => import('./pages/games/el-tesoro-escondido/el-tesoro-escondido').then(m => m.ElTesoroEscondido),
-        canActivate: [guardsGuard]
+        // canActivate: [guardsGuard]
     },
     {
         path: 'chat',
         loadComponent: () => import('./pages/chat/chat').then(m => m.Chat),
-        canActivate: [guardsGuard]
+        // canActivate: [guardsGuard]
     },
 
     // Ruta comodín (si no encuentra ninguna ruta)

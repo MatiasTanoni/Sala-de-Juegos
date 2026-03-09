@@ -38,6 +38,13 @@
         Resultados
       </a>
     </li>
+    <li>
+      <a [routerLink]="!blockNavegation ? '/chat' : null"
+        routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold" class="transition"
+        [class.cursor-not-allowed]="blockNavegation">
+        Chat
+      </a>
+    </li>
 
     @if (!user) {
     <li>
@@ -48,13 +55,6 @@
       </a>
     </li>
     } @else {
-    <li>
-      <a [routerLink]="!blockNavegation ? '/chat' : null"
-        routerLinkActive="text-red-700 border-b-2 border-red-700 font-semibold" class="transition"
-        [class.cursor-not-allowed]="blockNavegation">
-        Chat
-      </a>
-    </li>
     <li class="flex items-center space-x-5">
       <span class="font-semibold">{{ "Bienvenido, " + userData + "!"}}</span>
       <button (click)="requestLogout()"
