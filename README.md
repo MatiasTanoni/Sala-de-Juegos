@@ -12,7 +12,7 @@ PROYECTO PROGRAMACIÓN 4 | 1ER PARCIAL | UTN
 **Sala de Juegos** es una plataforma web interactiva donde los usuarios pueden jugar a distintos juegos, consultar resultados y participar en un chat en tiempo real.  
 La aplicación es **responsive**, con menú hamburguesa para móviles, confirmaciones para acciones críticas y actualización automática de la interfaz al iniciar o cerrar sesión.
 
-- **Video Demostración:** [Ver en YouTube]([[https://www.youtube.com/watch?v=Hvv_DqMxtO0](https://www.youtube.com/watch?v=BjnCQ6zuiGc&t=1s)](https://www.youtube.com/watch?v=BjnCQ6zuiGc&t=1s))
+- **Video Demostración:** [Ver en YouTube](https://www.youtube.com/watch?v=BjnCQ6zuiGc)
 
 ---
 
